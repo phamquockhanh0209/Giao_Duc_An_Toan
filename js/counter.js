@@ -13,11 +13,11 @@ const SafeTeenAnalytics = (() => {
 
   // Mặc định baseline (khớp với số liệu báo cáo dự án)
   const DEFAULT_BASELINE = {
-    visitors: 1482,
-    pretestCompleted: 286,
-    scenariosExplored: 214,
-    quizCompleted: 178,
-    chatInteractions: 96
+    visitors: 0,
+    pretestCompleted: 0,
+    scenariosExplored: 0,
+    quizCompleted: 0,
+    chatInteractions: 0
   };
 
   function getBaseline() {
