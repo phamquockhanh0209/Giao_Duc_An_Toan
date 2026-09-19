@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Đánh giá Kiến thức · SafeTeen</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="SafeTeen Trang chủ">
+        <span class="brand-title">SafeTeen</span>
+        <span class="brand-tag">Giáo dục an toàn</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Điều hướng chính">
+        <a href="index.html" class="nav-link">Trang chủ</a>
+        <a href="knowledge.html" class="nav-link">Kiến thức</a>
+        <a href="scenarios.html" class="nav-link">Tình huống</a>
+        <a href="quiz.html" class="nav-link active">Quiz</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn-chat-header" id="btnOpenChatHeader" aria-label="Mở Boxchat Tâm sự">
+          <span class="chat-pulse-dot"></span>
+          <span>Tâm sự & Hỗ trợ</span>
+        </button>
+        <div id="headerUserStatus"></div>
+        <button type="button" class="my-results-btn" id="btnMyResults" aria-label="Xem kết quả cá nhân">
+          Kết quả của tôi
+        </button>
+        <button type="button" class="mobile-nav-toggle" aria-label="Mở menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container container-narrow" style="padding-top: var(--space-xl); padding-bottom: var(--space-2xl);">
+      
+      <!-- PAGE HEADER -->
+      <header style="margin-bottom: var(--space-xl); text-align: left;">
+        <span class="eyebrow eyebrow-accent">LUYỆN TẬP & ĐÁNH GIÁ TỔNG KẾT</span>
+        <h1 style="font-size: 2.65rem; margin-bottom: 0.75rem;">Bạn đã sẵn sàng kiểm tra lại?</h1>
+        <p class="lead" style="margin-bottom: 0;">
+          Bài Quiz giúp bạn kiểm tra mức độ hiểu biết về ranh giới cá nhân, sự đồng thuận, quyền riêng tư và cách xử lý tình huống qua 5 mức độ tư duy.
+        </p>
+      </header>
+
+      <!-- ACTIVE QUIZ CARD -->
+      <section id="quizActiveView" class="question-card" aria-label="Bài kiểm tra trắc nghiệm">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="quiz-level-indicator" id="quizLevelBadge">
+            Mức 1 — Nhận biết cơ bản
+          </div>
+          <span class="test-counter" id="quizCounter">Câu 01 / 10</span>
+        </div>
+
+        <div class="progress-bar-wrap" role="progressbar" aria-valuemin="1" aria-valuemax="10">
+          <div class="progress-bar-fill" id="quizProgressBarFill" style="width: 10%;"></div>
+        </div>
+
+        <h2 class="question-text" id="quizQuestionText" style="font-size: 1.35rem; margin-bottom: 1.25rem;">
+          Đang tải câu hỏi...
+        </h2>
+
+        <div class="options-group" id="quizOptionsContainer" role="radiogroup">
+          <!-- Options populated by quiz.js -->
+        </div>
+
+        <!-- Instant Feedback Box -->
+        <div class="instant-feedback" id="quizInstantFeedback" role="alert"></div>
+
+        <!-- Controls -->
+        <div style="margin-top: 1.5rem; text-align: right;">
+          <button type="button" class="btn btn-primary" id="btnQuizNext" style="display: none;">
+            Câu hỏi tiếp theo →
+          </button>
+        </div>
+      </section>
+
+      <!-- QUIZ RESULTS VIEW (Shown when complete) -->
+      <section id="quizResultsView" style="display: none;" aria-label="Kết quả bài Quiz">
+        <div class="completion-card">
+          <span class="eyebrow eyebrow-accent">KẾT QUẢ TỔNG KẾT</span>
+          <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Điểm đánh giá của bạn</h2>
+          
+          <div class="completion-score-badge" id="quizFinalScore">42 / 50</div>
+
+          <!-- Dynamic Sticker Container -->
+          <div id="quizStickerContainer" class="test-sticker-card" style="margin-top: 1rem;">
+            <!-- Populated by quiz.js -->
+          </div>
+
+          <p class="completion-message" id="quizEvaluationText">
+            Đang tải nhận xét...
+          </p>
+
+          <!-- BEFORE / AFTER JOURNEY CHART -->
+          <div class="journey-chart-card" style="text-align: left;">
+            <span class="eyebrow">THEO DÕI SỰ TIẾN BỘ</span>
+            <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.5rem;">
+              Hành trình của bạn
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1.25rem;">
+              So sánh mức độ nhận thức ban đầu (Pre-test) với kết quả hiện tại sau khi tìm hiểu kiến thức và thực hành tình huống:
+            </p>
+
+            <div class="journey-bars">
+              <!-- Pre-test row -->
+              <div class="journey-bar-row">
+                <span class="journey-bar-label">Đầu vào (Pre-test):</span>
+                <div class="bar-track">
+                  <div class="bar-fill-pre" id="chartPreFill" style="width: 0%;"></div>
+                </div>
+                <span class="journey-bar-score" id="chartPreScoreText">14 / 20</span>
+              </div>
+
+              <!-- Quiz row -->
+              <div class="journey-bar-row">
+                <span class="journey-bar-label">Hiện tại (Quiz):</span>
+                <div class="bar-track">
+                  <div class="bar-fill-quiz" id="chartQuizFill" style="width: 0%;"></div>
+                </div>
+                <span class="journey-bar-score" id="chartQuizScoreText">42 / 50</span>
+              </div>
+            </div>
+
+            <p class="journey-feedback-text" id="chartJourneyFeedback">
+              Kết quả giúp bạn nhìn lại những kiến thức mình đã cải thiện.
+            </p>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="knowledge.html" class="btn btn-secondary">
+              Xem lại Sổ tay kiến thức
+            </a>
+            <button type="button" class="btn btn-primary" id="btnRetakeQuiz">
+              Làm lại bài Quiz
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: CẦN HỖ TRỢ / AN TOÀN HÀNH ĐỘNG -->
+      <section style="margin-top: var(--space-2xl);" id="section-safety">
+        <div class="support-banner">
+          <span class="eyebrow eyebrow-accent">KHI CẦN HỖ TRỢ</span>
+          <h2 style="font-size: 2rem; margin-bottom: 0.75rem;">Nếu bạn cảm thấy không an toàn</h2>
+          <p style="color: var(--color-text); font-size: 1rem; line-height: 1.65; margin-bottom: 1.25rem;">
+            Không có tình huống nào là quá muộn để bắt đầu tìm kiếm sự bảo vệ. Nếu có ai đó đang làm bạn sợ hãi, đe dọa hoặc quấy rối, hãy thực hiện ngay các bước sau:
+          </p>
+
+          <div class="support-flow-steps">
+            <span class="flow-step-item">01. Nhận ra</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step-item">02. Từ chối / Đặt giới hạn</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step-item">03. Rời khỏi nếu có thể</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step-item">04. Lưu giữ bằng chứng</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step-item">05. Nói với người tin cậy</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step-item" style="color: var(--color-accent); font-weight: 700;">06. Tìm hỗ trợ phù hợp</span>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <div style="font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-green-dark); margin-bottom: 0.6rem;">
+              Các địa chỉ tiếp nhận và hỗ trợ an toàn:
+            </div>
+            <ul class="support-channels-list">
+              <li>
+                <span class="support-dot"></span>
+                <div>
+                  <strong>Gia đình / Người chăm sóc:</strong>
+                  <div style="font-size: 0.85rem; color: var(--color-muted);">Nơi có thẩm quyền và trách nhiệm pháp lý cao nhất trong việc bảo hộ học sinh.</div>
+                </div>
+              </li>
+              <li>
+                <span class="support-dot"></span>
+                <div>
+                  <strong>Giáo viên chủ nhiệm & Ban Giám hiệu nhà trường:</strong>
+                  <div style="font-size: 0.85rem; color: var(--color-muted);">Đầu mối xử lý các vấn đề bắt nạt học đường, quấy rối giữa các học sinh.</div>
+                </div>
+              </li>
+              <li>
+                <span class="support-dot"></span>
+                <div>
+                  <strong>Phòng Tham vấn & Tư vấn Tâm lý học đường:</strong>
+                  <div style="font-size: 0.85rem; color: var(--color-muted);">Không gian hỗ trợ tâm lý chuyên nghiệp, bảo mật hoàn toàn danh tính.</div>
+                </div>
+              </li>
+              <li>
+                <span class="support-dot"></span>
+                <div>
+                  <strong>Tổng đài Quốc gia Bảo vệ Trẻ em (Miễn phí 24/7): Số 111</strong>
+                  <div style="font-size: 0.85rem; color: var(--color-muted);">Đường dây nóng quốc gia của Bộ Lao động - Thương binh & Xã hội hỗ trợ can thiệp các trường hợp xâm hại, bạo lực trẻ em và vị thành niên.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">SafeTeen</div>
+          <div class="footer-tagline">
+            Hiểu ranh giới – Tôn trọng bản thân – Biết cách bảo vệ mình.
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="knowledge.html">Kiến thức</a></li>
+          <li><a href="scenarios.html">Tình huống</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="#section-safety">Cần hỗ trợ</a></li>
+        </ul>
+      </div>
+      <!-- VISITOR COUNTER WIDGET -->
+      <div class="footer-visitor-counter">
+        <div class="counter-badge" id="btnOpenAnalytics" title="Bấm để xem số liệu báo cáo dự án">
+          <span class="counter-item"><span class="counter-icon">👁️</span> LƯỢT TRUY CẬP: <strong id="visitorCountDisplay">1,482</strong></span>
+          <span class="counter-report-btn">📊 Báo cáo đề tài</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Nội dung được xây dựng nhằm mục đích giáo dục và nâng cao nhận thức cho học sinh THPT.</span>
+        <span>SafeTeen Quiz & Assessment · Đánh giá năng lực an toàn</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

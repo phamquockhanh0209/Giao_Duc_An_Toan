@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tình huống Thực tế · SafeTeen</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="SafeTeen Trang chủ">
+        <span class="brand-title">SafeTeen</span>
+        <span class="brand-tag">Giáo dục an toàn</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Điều hướng chính">
+        <a href="index.html" class="nav-link">Trang chủ</a>
+        <a href="knowledge.html" class="nav-link">Kiến thức</a>
+        <a href="scenarios.html" class="nav-link active">Tình huống</a>
+        <a href="quiz.html" class="nav-link">Quiz</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn-chat-header" id="btnOpenChatHeader" aria-label="Mở Boxchat Tâm sự">
+          <span class="chat-pulse-dot"></span>
+          <span>Tâm sự & Hỗ trợ</span>
+        </button>
+        <div id="headerUserStatus"></div>
+        <button type="button" class="my-results-btn" id="btnMyResults" aria-label="Xem kết quả cá nhân">
+          Kết quả của tôi
+        </button>
+        <button type="button" class="mobile-nav-toggle" aria-label="Mở menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" style="max-width: 1120px; padding-top: var(--space-xl); padding-bottom: var(--space-2xl);">
+      
+      <!-- PAGE INTRO -->
+      <header style="margin-bottom: var(--space-lg); text-align: left;">
+        <span class="eyebrow eyebrow-accent">RÈN LUYỆN TƯ DUY & PHẢN XẠ THỰC TẾ</span>
+        <h1 style="font-size: 2.65rem; margin-bottom: 0.75rem;">Bạn sẽ làm gì? (9 Tình huống)</h1>
+        <p class="lead" style="margin-bottom: 0;">
+          Mỗi tình huống học đường và không gian mạng đều có những ranh giới cần nhận diện. Hãy chọn cách xử lý bạn cho là an toàn và phù hợp nhất để xem phân tích chuyên sâu nhé.
+        </p>
+      </header>
+
+      <!-- STICKY PROGRESS & QUICK NAV -->
+      <div class="scenarios-header-sticky">
+        <div class="scenarios-progress-meta">
+          <div>
+            <strong>Tiến độ thực hành:</strong> 
+            <span style="color: var(--color-green-dark); font-weight: 700;"><span id="scenariosCompletedCount">0</span> / 9</span> tình huống
+          </div>
+          <div style="font-size: 0.8rem; color: var(--color-muted);">
+            Bấm chọn đáp án để xem giải thích chuyên sâu
+          </div>
+        </div>
+
+        <div class="progress-bar-wrap" style="height: 6px; margin-bottom: 0.75rem;">
+          <div class="progress-bar-fill" id="scenariosProgressFill" style="width: 0%;"></div>
+        </div>
+
+        <div class="scenarios-quick-nav" id="scenariosQuickNav" aria-label="Điều hướng nhanh tình huống">
+          <!-- Populated by scenarios.js -->
+        </div>
+      </div>
+
+      <!-- 9 SCENARIOS CONTAINER (ALTERNATING ROWS) -->
+      <div class="scenarios-container" id="scenariosContainer">
+        <!-- Rendered dynamically by scenarios.js with alternating left/right layout -->
+      </div>
+
+      <!-- COMPLETION CELEBRATION CARD (At Bottom) -->
+      <section class="scenarios-completed-card" id="scenariosCompletionCard" style="display: none;">
+        <span class="eyebrow eyebrow-accent">XUẤT SẮC · HOÀN THÀNH 9/9 TÌNH HUỐNG</span>
+        <h2 style="font-family: var(--font-serif); font-size: 2.2rem; margin: 0.5rem 0 1rem 0;">
+          Bạn đã hoàn thành trọn vẹn các tình huống rèn luyện!
+        </h2>
+        <p style="color: var(--color-muted); font-size: 1.05rem; line-height: 1.7; max-width: 620px; margin: 0 auto 1.75rem auto;">
+          Việc thực hành phản xạ qua 9 tình huống thực tế giúp bạn luôn tỉnh táo: biết từ chối khéo léo, bảo vệ không gian riêng tư và nhận diện sớm các nguy cơ xâm phạm.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="quiz.html" class="btn btn-primary" style="padding: 0.9rem 1.75rem; font-size: 1rem;">
+            Thử sức ngay với bài Quiz đánh giá →
+          </a>
+          <a href="knowledge.html" class="btn btn-secondary" style="padding: 0.9rem 1.5rem; font-size: 1rem;">
+            Đọc lại Sổ tay kiến thức
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">SafeTeen</div>
+          <div class="footer-tagline">
+            Hiểu ranh giới – Tôn trọng bản thân – Biết cách bảo vệ mình.
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="knowledge.html">Kiến thức</a></li>
+          <li><a href="scenarios.html">Tình huống</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+        </ul>
+      </div>
+      <!-- VISITOR COUNTER WIDGET -->
+      <div class="footer-visitor-counter">
+        <div class="counter-badge" id="btnOpenAnalytics" title="Bấm để xem số liệu báo cáo dự án">
+          <span class="counter-item"><span class="counter-icon">👁️</span> LƯỢT TRUY CẬP: <strong id="visitorCountDisplay">1,482</strong></span>
+          <span class="counter-report-btn">📊 Báo cáo đề tài</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Nội dung được xây dựng nhằm mục đích giáo dục và nâng cao nhận thức cho học sinh THPT.</span>
+        <span>SafeTeen Scenarios · Thực hành ứng xử an toàn</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/scenarios.js"></script>
+</body>
+</html>

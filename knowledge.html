@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sổ tay Kiến thức An toàn · SafeTeen</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="SafeTeen Trang chủ">
+        <span class="brand-title">SafeTeen</span>
+        <span class="brand-tag">Giáo dục an toàn</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Điều hướng chính">
+        <a href="index.html" class="nav-link">Trang chủ</a>
+        <a href="knowledge.html" class="nav-link active">Kiến thức</a>
+        <a href="scenarios.html" class="nav-link">Tình huống</a>
+        <a href="quiz.html" class="nav-link">Quiz</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn-chat-header" id="btnOpenChatHeader" aria-label="Mở Boxchat Tâm sự">
+          <span class="chat-pulse-dot"></span>
+          <span>Tâm sự & Hỗ trợ</span>
+        </button>
+        <div id="headerUserStatus"></div>
+        <button type="button" class="my-results-btn" id="btnMyResults" aria-label="Xem kết quả cá nhân">
+          Kết quả của tôi
+        </button>
+        <button type="button" class="mobile-nav-toggle" aria-label="Mở menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      
+      <!-- PAGE HEADER -->
+      <div style="padding-top: var(--space-xl); padding-bottom: var(--space-md); border-bottom: var(--border-subtle);">
+        <span class="eyebrow">DIGITAL HANDBOOK · TÀI LIỆU HỌC TẬP</span>
+        <h1 style="font-size: 2.85rem; margin-bottom: 0.5rem;">Sổ tay Ranh giới & An toàn Bản thân</h1>
+        <p class="lead" style="margin-bottom: 0; max-width: 780px;">
+          Tài liệu tổng hợp các kiến thức cốt lõi giúp học sinh THPT nhận diện ranh giới, hiểu đúng về sự đồng thuận và biết cách tự bảo vệ mình trong đời sống thực tế cũng như trên không gian số.
+        </p>
+      </div>
+
+      <!-- HANDBOOK LAYOUT (Sticky TOC + Content) -->
+      <div class="handbook-layout">
+        
+        <!-- SIDEBAR TOC -->
+        <aside class="handbook-sidebar" aria-label="Mục lục bài viết">
+          <div class="sidebar-title">MỤC LỤC CHỦ ĐỀ</div>
+          <nav>
+            <ul class="toc-nav">
+              <li><a href="#section-01" class="toc-link active">01 Ranh giới cá nhân</a></li>
+              <li><a href="#section-02" class="toc-link">02 Quyền nói “không”</a></li>
+              <li><a href="#section-03" class="toc-link">03 Sự đồng thuận</a></li>
+              <li><a href="#section-04" class="toc-link">04 Nhận diện xâm phạm</a></li>
+              <li><a href="#section-05" class="toc-link">05 Áp lực & thao túng</a></li>
+              <li><a href="#section-06" class="toc-link">06 Nhận biết nguy cơ</a></li>
+              <li><a href="#section-07" class="toc-link">07 Kỹ năng phòng tránh</a></li>
+              <li><a href="#section-08" class="toc-link">08 Sau khi xảy ra sự việc</a></li>
+              <li><a href="#section-09" class="toc-link">09 Bình thường hay cảnh giác?</a></li>
+              <li><a href="#section-qa" class="toc-link">10 Góc hỏi đáp</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- CONTENT ARTICLE -->
+        <div class="handbook-content">
+          
+          <!-- SECTION 01 -->
+          <article class="article-section" id="section-01">
+            <div class="section-tag">CHỦ ĐỀ 01</div>
+            <h2 class="article-heading">Ranh giới cá nhân là gì?</h2>
+            <p>
+              Ranh giới cá nhân là những giới hạn vô hình hoặc hữu hình mà mỗi người đặt ra đối với những người xung quanh. Đó là đường biên xác định điều gì khiến bạn cảm thấy an toàn, thoải mái và được tôn trọng; ngược lại, điều gì khiến bạn cảm thấy bị xâm phạm hoặc tổn thương.
+            </p>
+            <p>
+              Ranh giới của một người thường bao gồm 6 nhóm chính:
+            </p>
+
+            <div class="boundary-grid">
+              <div class="boundary-item">
+                <div class="boundary-item-title">1. Cơ thể (Physical)</div>
+                <p class="boundary-item-desc">Ai có thể chạm vào cơ thể bạn, chạm ở đâu, khi nào và trong hoàn cảnh nào được bạn đồng ý.</p>
+              </div>
+              <div class="boundary-item">
+                <div class="boundary-item-title">2. Cảm xúc (Emotional)</div>
+                <p class="boundary-item-desc">Mức độ chia sẻ suy nghĩ thầm kín, cảm xúc cá nhân và quyền không bị ép phải gánh chịu năng lượng tiêu cực từ người khác.</p>
+              </div>
+              <div class="boundary-item">
+                <div class="boundary-item-title">3. Thông tin cá nhân</div>
+                <p class="boundary-item-desc">Mật khẩu tài khoản, số điện thoại, địa chỉ nhà, nhật ký, hình ảnh và tin nhắn riêng tư.</p>
+              </div>
+              <div class="boundary-item">
+                <div class="boundary-item-title">4. Không gian riêng tư</div>
+                <p class="boundary-item-desc">Cặp sách, bàn học, phòng ngủ, điện thoại hoặc những vật dụng cá nhân không ai được tự tiện lục lọi.</p>
+              </div>
+              <div class="boundary-item">
+                <div class="boundary-item-title">5. Thời gian & Mối quan hệ</div>
+                <p class="boundary-item-desc">Thời gian dành cho bản thân, gia đình, học tập mà không bị ép buộc phải trả lời tin nhắn hay đi chơi ngay lập tức.</p>
+              </div>
+              <div class="boundary-item">
+                <div class="boundary-item-title">6. Không gian mạng (Digital)</div>
+                <p class="boundary-item-desc">Quyền kiểm soát những gì liên quan đến hình ảnh, danh tính của mình được đăng tải hoặc gắn thẻ trên mạng xã hội.</p>
+              </div>
+            </div>
+
+            <div class="callout">
+              <p class="callout-quote">
+                “Mỗi người có ranh giới khác nhau và ranh giới của mỗi người đều cần được tôn trọng bình đẳng.”
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 02 -->
+          <article class="article-section" id="section-02">
+            <div class="section-tag">CHỦ ĐỀ 02</div>
+            <h2 class="article-heading">Bạn có quyền nói “không”</h2>
+            <p>
+              Nhiều học sinh THPT cảm thấy áy náy khi phải từ chối bạn bè vì sợ bị coi là kiêu ngạo, mất bạn hay không hòa đồng. Tuy nhiên, quyền nói "Không" là quyền căn bản của mỗi cá nhân để bảo vệ sự an toàn và phẩm giá của mình.
+            </p>
+            
+            <ul class="permission-list">
+              <li>Từ chối một hành động hoặc cử chỉ thân mật khiến mình không thoải mái.</li>
+              <li>Yêu cầu người khác dừng lại ngay khi bạn thấy bất an.</li>
+              <li>Không trả lời những câu hỏi quá soi mói đời tư.</li>
+              <li>Không cung cấp hình ảnh hoặc thông tin cá nhân nếu không muốn.</li>
+              <li>Rời khỏi cuộc trò chuyện, buổi đi chơi hoặc tình huống khiến bản thân cảm thấy không an toàn.</li>
+              <li>Tìm kiếm sự giúp đỡ từ người khác khi nhận thấy ranh giới của mình bị đe dọa.</li>
+            </ul>
+
+            <div class="callout callout-warm">
+              <p class="callout-quote">
+                “Bảo vệ ranh giới cá nhân không đồng nghĩa với ích kỷ hay thiếu tôn trọng người khác.”
+              </p>
+            </div>
+          </article>
+
+          <!-- SECTION 03 -->
+          <article class="article-section" id="section-03">
+            <div class="section-tag">CHỦ ĐỀ 03</div>
+            <h2 class="article-heading">Sự đồng thuận (Consent)</h2>
+            <p>
+              Sự đồng thuận là nền tảng của mọi mối quan hệ lành mạnh, dù là tình bạn, tình yêu hay giao tiếp hàng ngày. Một sự đồng thuận thực sự phải hội đủ 5 nguyên tắc:
+            </p>
+
+            <div class="consent-principles-grid">
+              <div class="consent-card">
+                <span class="consent-num">01</span>
+                <div class="consent-name">Tự nguyện</div>
+              </div>
+              <div class="consent-card">
+                <span class="consent-num">02</span>
+                <div class="consent-name">Rõ ràng</div>
+              </div>
+              <div class="consent-card">
+                <span class="consent-num">03</span>
+                <div class="consent-name">Cụ thể</div>
+              </div>
+              <div class="consent-card">
+                <span class="consent-num">04</span>
+                <div class="consent-name">Có thể đổi ý</div>
+              </div>
+              <div class="consent-card">
+                <span class="consent-num">05</span>
+                <div class="consent-name">Không thể suy đoán</div>
+              </div>
+            </div>
+
+            <div class="callout" style="border-left-color: var(--color-accent);">
+              <p style="font-weight: 600; color: var(--color-text); margin-bottom: 0.35rem;">
+                Đặc biệt lưu ý:
+              </p>
+              <p class="callout-quote" style="color: var(--color-text);">
+                “Im lặng hoặc không phản ứng không nhất thiết có nghĩa là đồng ý.”
+              </p>
+              <p style="font-size: 0.92rem; color: var(--color-muted); margin-top: 0.5rem; line-height: 1.6;">
+                Khi một người đơ cứng, im lặng hoặc không nói gì, đó có thể là phản ứng hoảng loạn trước một tình huống bất ngờ hoặc áp lực sợ hãi, hoàn toàn không phải là sự đồng ý.
+              </p>
+            </div>
+
+            <p style="background-color: var(--color-bg-card); border: var(--border-subtle); padding: 1rem 1.25rem; border-radius: var(--radius-sm); font-size: 0.95rem;">
+              <strong>Ví dụ thực tế:</strong> Bạn đồng ý chụp ảnh chung cùng bạn bè trong ngày bế giảng, điều đó <em>không đồng nghĩa</em> với việc bạn đồng ý cho bạn mình tự ý đăng bức ảnh đó lên Facebook hoặc Instagram công khai.
+            </p>
+          </article>
+
+          <!-- SECTION 04 -->
+          <article class="article-section" id="section-04">
+            <div class="section-tag">CHỦ ĐỀ 04</div>
+            <h2 class="article-heading">Nhận diện hành vi xâm phạm</h2>
+            <p>
+              Hành vi xâm phạm ranh giới có thể diễn ra dưới nhiều mức độ khác nhau, từ trực tiếp ngoài đời thực đến trên không gian trực tuyến:
+            </p>
+
+            <div class="violation-split">
+              <!-- Cột trực tiếp -->
+              <div class="violation-column">
+                <span class="violation-badge">TRỰC TIẾP (NGOÀI ĐỜI THỰC)</span>
+                <ul class="violation-list">
+                  <li>Tự ý chạm vào cơ thể người khác khi chưa được phép.</li>
+                  <li>Ép buộc ôm, nắm tay, hôn hoặc có những cử chỉ đụng chạm ngoài ý muốn.</li>
+                  <li>Tự tiện lục cặp, giật lấy điện thoại đọc tin nhắn riêng tư.</li>
+                  <li>Đòi hỏi những thông tin cá nhân quá mức nhạy cảm.</li>
+                  <li>Sử dụng sức ép thể chất hoặc đe dọa để buộc người khác làm theo.</li>
+                </ul>
+              </div>
+
+              <!-- Cột trên mạng -->
+              <div class="violation-column">
+                <span class="violation-badge">TRÊN MẠNG (KHÔNG GIAN SỐ)</span>
+                <ul class="violation-list">
+                  <li>Tự ý đăng tải ảnh, video của người khác mà không có sự đồng thuận.</li>
+                  <li>Chia sẻ thông tin cá nhân, số điện thoại của bạn bè cho người lạ.</li>
+                  <li>Liên tục gửi tin nhắn, gọi điện làm phiền dù đối phương đã yêu cầu dừng.</li>
+                  <li>Ép gửi ảnh riêng tư hoặc hình ảnh nhạy cảm.</li>
+                  <li>Dùng hình ảnh, tin nhắn cũ để gây áp lực hoặc đe dọa tống tiền.</li>
+                  <li>Giả danh tài khoản hoặc tìm cách xâm nhập mật khẩu trái phép.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- SECTION 05 -->
+          <article class="article-section" id="section-05">
+            <div class="section-tag">CHỦ ĐỀ 05</div>
+            <h2 class="article-heading">Áp lực và thao túng tâm lý</h2>
+            <p>
+              Kẻ xâm phạm ranh giới thường ít khi dùng bạo lực ngay từ đầu, mà sử dụng những câu nói thao túng tinh vi để khiến bạn cảm thấy có lỗi, nghi ngờ chính mình hoặc buộc phải nhượng bộ:
+            </p>
+
+            <div class="quote-manipulation-grid">
+              <!-- Câu 1 -->
+              <div class="manipulation-card">
+                <div class="manipulation-quote">“Nếu là bạn của mình thì phải làm.”</div>
+                <p class="manipulation-analysis">
+                  <strong>Phân tích:</strong> Đây là chiêu bài tống tiền cảm xúc (guilt-tripping). Một tình bạn chân chính dựa trên sự tôn trọng sự tự nguyện của nhau, chứ không dùng tình bạn làm công cụ ép buộc.
+                </p>
+              </div>
+
+              <!-- Câu 2 -->
+              <div class="manipulation-card">
+                <div class="manipulation-quote">“Ai cũng làm thế, có gì đâu mà làm quá lên.”</div>
+                <p class="manipulation-analysis">
+                  <strong>Phân tích:</strong> Thao túng bằng chuẩn mực đám đông (peer pressure). Cho dù 99 người khác làm điều đó thì bạn vẫn luôn có quyền từ chối nếu cảm thấy điều đó không phù hợp với chuẩn mực và sự an toàn của mình.
+                </p>
+              </div>
+
+              <!-- Câu 3 -->
+              <div class="manipulation-card">
+                <div class="manipulation-quote">“Bạn đồng ý rồi thì không được đổi ý.”</div>
+                <p class="manipulation-analysis">
+                  <strong>Phân tích:</strong> Sự đồng thuận luôn có tính chất đảo ngược. Bất cứ lúc nào bạn thấy mất an toàn hoặc không muốn tiếp tục, bạn có toàn quyền rút lại sự đồng thuận ban đầu.
+                </p>
+              </div>
+
+              <!-- Câu 4 -->
+              <div class="manipulation-card">
+                <div class="manipulation-quote">“Đừng nói với bố mẹ hay thầy cô nhé, chuyện này chỉ hai đứa biết thôi.”</div>
+                <p class="manipulation-analysis">
+                  <strong>Phân tích:</strong> Dấu hiệu cô lập nạn nhân. Kẻ xấu muốn cắt đứt liên lạc giữa bạn và những người có khả năng bảo vệ bạn, tạo điều kiện để tiếp tục kiểm soát bạn.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- SECTION 06 -->
+          <article class="article-section" id="section-06">
+            <div class="section-tag">CHỦ ĐỀ 06</div>
+            <h2 class="article-heading">Nhận biết các nguy cơ</h2>
+            <p>
+              Hãy luôn tin vào những tín hiệu cảnh báo bên trong và chú ý đến các dấu hiệu nguy cơ sau:
+            </p>
+            <ul style="line-height: 1.8;">
+              <li><strong>Cảm giác khó chịu hoặc sợ hãi:</strong> Trực giác cơ thể (tim đập nhanh, bụng quặn lại, bồn chồn) là tín hiệu đầu tiên báo hiệu có điều gì đó không ổn.</li>
+              <li><strong>Lời từ chối không được tôn trọng:</strong> Bạn đã nói không hoặc tỏ thái độ không thích nhưng đối phương vẫn tiếp tục làm tới.</li>
+              <li><strong>Bị yêu cầu giữ bí mật:</strong> Những đề nghị bất thường luôn đi kèm lời dặn không được chia sẻ với gia đình hay thầy cô.</li>
+              <li><strong>Sự chênh lệch quyền lực:</strong> Người lớn hơn, người có tầm ảnh hưởng trong nhóm lợi dụng vị thế để yêu cầu bạn làm điều bạn không muốn.</li>
+              <li><strong>Bị kiểm soát các mối quan hệ & điện thoại:</strong> Đòi kiểm tra tin nhắn, cấm bạn chơi với người khác hoặc can thiệp vào giờ giấc riêng tư.</li>
+              <li><strong>Lời đe dọa:</strong> Cảnh báo sẽ làm tổn hại danh dự, kể chuyện xấu hoặc đăng hình ảnh của bạn nếu bạn không nghe lời.</li>
+              <li><strong>Tình huống chuyển từ bình thường sang gây áp lực:</strong> Lúc đầu nói là trò chuyện vui vẻ, nhưng dần chuyển sang đòi hỏi những điều nhạy cảm.</li>
+            </ul>
+          </article>
+
+          <!-- SECTION 07 -->
+          <article class="article-section" id="section-07">
+            <div class="section-tag">CHỦ ĐỀ 07</div>
+            <h2 class="article-heading">Kỹ năng phòng tránh và ứng phó</h2>
+            <p>
+              Khi đối mặt với tình huống khiến bạn bất an, hãy áp dụng quy trình 5 bước mạch lạc:
+            </p>
+
+            <div class="flow-diagram-vertical">
+              <div class="flow-node">
+                <span class="flow-node-index">01</span>
+                <div class="flow-node-content">
+                  <h5>NHẬN DIỆN</h5>
+                  <p>Lắng nghe cảm giác bên trong. Nhận ra rằng mình đang bị đặt vào một tình thế không thoải mái hoặc không an toàn.</p>
+                </div>
+              </div>
+              <div class="flow-connector">↓</div>
+
+              <div class="flow-node">
+                <span class="flow-node-index">02</span>
+                <div class="flow-node-content">
+                  <h5>NÓI RÕ</h5>
+                  <p>Bày tỏ ranh giới một cách bình tĩnh, ngắn gọn và dứt khoát: “Mình không muốn điều này. Đề nghị bạn dừng lại.”</p>
+                </div>
+              </div>
+              <div class="flow-connector">↓</div>
+
+              <div class="flow-node">
+                <span class="flow-node-index">03</span>
+                <div class="flow-node-content">
+                  <h5>RỜI ĐI</h5>
+                  <p>Nếu đối phương không tôn trọng lời nói của bạn, hãy chủ động rời khỏi không gian đó, tìm đến nơi đông người hoặc người thân cận.</p>
+                </div>
+              </div>
+              <div class="flow-connector">↓</div>
+
+              <div class="flow-node">
+                <span class="flow-node-index">04</span>
+                <div class="flow-node-content">
+                  <h5>TÌM HỖ TRỢ</h5>
+                  <p>Kể lại sự việc với người lớn đáng tin cậy: bố mẹ, giáo viên chủ nhiệm hoặc chuyên viên tư vấn tâm lý học đường.</p>
+                </div>
+              </div>
+              <div class="flow-connector">↓</div>
+
+              <div class="flow-node">
+                <span class="flow-node-index">05</span>
+                <div class="flow-node-content">
+                  <h5>LƯU BẰNG CHỨNG KHI CẦN</h5>
+                  <p>Nếu sự việc xảy ra trên không gian mạng, chụp ảnh màn hình đầy đủ thông tin (tên tài khoản, nội dung, thời gian) trước khi chặn đối tượng.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- SECTION 08 -->
+          <article class="article-section" id="section-08">
+            <div class="section-tag">CHỦ ĐỀ 08</div>
+            <h2 class="article-heading">Sau khi xảy ra sự việc</h2>
+            <p>
+              Nếu không may bạn đã trải qua một tình huống bị xâm phạm ranh giới hoặc bị đe dọa, điều quan trọng nhất là giữ bình tĩnh và thực hiện các nguyên tắc sau:
+            </p>
+
+            <ul style="line-height: 1.8;">
+              <li><strong>Tuyệt đối không tự trách bản thân:</strong> Lỗi hoàn toàn thuộc về người có hành vi xâm phạm, không bao giờ là lỗi của bạn do "ngây thơ" hay "không cẩn thận".</li>
+              <li><strong>Không im lặng chỉ vì sợ bị đánh giá:</strong> Nỗi sợ bị người khác đánh giá là vũ khí mà kẻ xấu lợi dụng để tiếp tục thao túng bạn. Lên tiếng là cách chấm dứt sự việc.</li>
+              <li><strong>Kể lại toàn bộ cho người lớn đáng tin cậy:</strong> Chọn người mà bạn cảm thấy bình an nhất khi nói chuyện (bố, mẹ, cô giáo, bác ruột hoặc phòng tham vấn tâm lý).</li>
+              <li><strong>Tìm hỗ trợ từ các cơ sở chuyên môn:</strong> Nhà trường, chuyên viên tư vấn hoặc Tổng đài Quốc gia 111 luôn có các quy trình bảo mật thông tin để hỗ trợ học sinh.</li>
+              <li><strong>Lưu giữ thông tin liên quan:</strong> Tin nhắn, cuộc gọi, ảnh màn hình là bằng chứng pháp lý quan trọng để bảo vệ bạn khi người lớn vào cuộc.</li>
+              <li><strong>Không tiếp tục đối đầu trực tiếp:</strong> Tránh cãi vã tay đôi hoặc thách thức đối tượng nếu điều đó có thể làm tăng nguy cơ an toàn thể chất của bạn.</li>
+            </ul>
+          </article>
+
+          <!-- SECTION 09 -->
+          <article class="article-section" id="section-09">
+            <div class="section-tag">CHỦ ĐỀ 09</div>
+            <h2 class="article-heading">Bình thường hay cần cảnh giác?</h2>
+            <p>
+              Bảng đối chiếu dưới đây giúp bạn phân biệt rõ giữa những hành vi tôn trọng lành mạnh và những dấu hiệu cần cảnh giác:
+            </p>
+
+            <div class="comparison-table-wrap">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th style="width: 58%;">Tình huống thực tế</th>
+                    <th style="width: 42%;">Đánh giá & Bản chất</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Bạn hỏi “Mình có thể ôm cậu một cái chúc mừng được không?” và vui vẻ lùi lại khi bạn lắc đầu.</td>
+                    <td><span class="status-tag safe">Tôn trọng ranh giới</span><br><small style="color:var(--color-muted);">Hỏi trước và tôn trọng câu trả lời của đối phương.</small></td>
+                  </tr>
+                  <tr>
+                    <td>Bạn tự ý lấy điện thoại của mình xem tin nhắn trong khi mình đang ra ngoài.</td>
+                    <td><span class="status-tag violation">Xâm phạm quyền riêng tư</span><br><small style="color:var(--color-muted);">Thông tin cá nhân không được tự ý lục lọi.</small></td>
+                  </tr>
+                  <tr>
+                    <td>Một người liên tục nhắn tin, bình luận quấy rầy dù bạn đã nói rõ không muốn trò chuyện.</td>
+                    <td><span class="status-tag violation">Xâm phạm ranh giới & Quấy rối</span><br><small style="color:var(--color-muted);">Phớt lờ sự từ chối rõ ràng của đối phương.</small></td>
+                  </tr>
+                  <tr>
+                    <td>Bạn rủ đi chơi nhưng bạn từ chối vì bận học, bạn vui vẻ nói “Hẹn cậu dịp khác nhé!”.</td>
+                    <td><span class="status-tag safe">Mối quan hệ lành mạnh</span><br><small style="color:var(--color-muted);">Tôn trọng thời gian và ưu tiên cá nhân của bạn.</small></td>
+                  </tr>
+                  <tr>
+                    <td>Một tài khoản lạ trên mạng hỏi về trường lớp, địa chỉ nhà và bảo “giữ bí mật với bố mẹ”.</td>
+                    <td><span class="status-tag alert">Cần cảnh giác cao (Red Flag)</span><br><small style="color:var(--color-muted);">Dấu hiệu thu thập thông tin và cô lập học sinh.</small></td>
+                  </tr>
+                  <tr>
+                    <td>Một bạn trong nhóm nói: “Nếu cậu không uống/không làm theo thì đừng nhìn mặt bọn tớ nữa”.</td>
+                    <td><span class="status-tag alert">Thao túng & Áp lực đồng trang lứa</span><br><small style="color:var(--color-muted);">Ép buộc bằng sự tẩy chay và cô lập.</small></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- SECTION 10: GÓC HỎI ĐÁP -->
+          <article class="article-section" id="section-qa" style="border-bottom: none;">
+            <div class="qa-card">
+              <span class="eyebrow eyebrow-accent">KHÔNG GIAN HỎI ĐÁP ẨN DANH</span>
+              <h3 style="font-family: var(--font-serif); font-size: 1.55rem; margin-bottom: 0.5rem;">
+                Bạn đang băn khoăn điều gì?
+              </h3>
+              <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 1.25rem;">
+                Đặt câu hỏi về những băn khoăn liên quan đến ranh giới cá nhân, tình bạn hoặc sự đồng thuận. Chúng tôi luôn lắng nghe mà không phán xét.
+              </p>
+
+              <form id="qaForm">
+                <div class="qa-form-group">
+                  <textarea class="qa-textarea" id="qaInput" placeholder="Viết câu hỏi hoặc băn khoăn của bạn tại đây..." required></textarea>
+                  <div class="qa-privacy-notice">
+                    Lưu ý bảo mật: Không chia sẻ họ tên đầy đủ, địa chỉ, số điện thoại, mật khẩu hoặc bất kỳ hình ảnh riêng tư nào.
+                  </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                  <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--color-text); cursor: pointer;">
+                    <input type="checkbox" id="qaAnonymous" checked>
+                    Tôi muốn gửi ẩn danh hoàn toàn
+                  </label>
+                  <button type="submit" class="btn btn-primary" style="font-size: 0.9rem;">
+                    Gửi câu hỏi
+                  </button>
+                </div>
+              </form>
+
+              <div id="qaFeedback" style="display: none; margin-top: 1rem;"></div>
+
+              <!-- Câu hỏi mẫu -->
+              <div class="sample-questions-wrap">
+                <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.05em;">
+                  Những câu hỏi thường gặp (Nhấn để xem lời giải đáp):
+                </div>
+                <ul class="sample-q-list">
+                  <li>
+                    <button type="button" class="sample-q-btn" data-q="q1">
+                      • “Làm sao để nói không mà không cảm thấy có lỗi?”
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" class="sample-q-btn" data-q="q2">
+                      • “Bạn mình đang bị áp lực hoặc trêu chọc quá đà, mình nên làm gì?”
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" class="sample-q-btn" data-q="q3">
+                      • “Có phải một khi đã đồng ý rồi thì không được phép đổi ý?”
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">SafeTeen</div>
+          <div class="footer-tagline">
+            Hiểu ranh giới – Tôn trọng bản thân – Biết cách bảo vệ mình.
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="knowledge.html">Kiến thức</a></li>
+          <li><a href="scenarios.html">Tình huống</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+        </ul>
+      </div>
+      <!-- VISITOR COUNTER WIDGET -->
+      <div class="footer-visitor-counter">
+        <div class="counter-badge" id="btnOpenAnalytics" title="Bấm để xem số liệu báo cáo dự án">
+          <span class="counter-item"><span class="counter-icon">👁️</span> LƯỢT TRUY CẬP: <strong id="visitorCountDisplay">1,482</strong></span>
+          <span class="counter-report-btn">📊 Báo cáo đề tài</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Nội dung được xây dựng nhằm mục đích giáo dục và nâng cao nhận thức cho học sinh THPT.</span>
+        <span>SafeTeen Handbook · Tài liệu học tập an toàn</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/knowledge.js"></script>
+</body>
+</html>
