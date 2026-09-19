@@ -38,6 +38,7 @@ const SafeTeenAnalytics = (() => {
   }
 
   function resetToZero() {
+    // Đặt lại toàn bộ số liệu thống kê về 0
     localStorage.setItem(STORAGE_KEYS.CUSTOM_BASELINE, JSON.stringify({
       visitors: 0,
       pretestCompleted: 0,
@@ -45,9 +46,13 @@ const SafeTeenAnalytics = (() => {
       quizCompleted: 0,
       chatInteractions: 0
     }));
-    localStorage.setItem(STORAGE_KEYS.UNIQUE_VISITORS, '1');
+    // Đếm lại từ 0 (không đặt 1 vì sẽ luôn hiển thị 1)
+    localStorage.setItem(STORAGE_KEYS.UNIQUE_VISITORS, '0');
     localStorage.setItem(STORAGE_KEYS.CHAT_COUNT, '0');
-    sessionStorage.setItem(STORAGE_KEYS.SESSION_ID, 'true');
+    // Xóa cờ đã ghi nhận thiết bị để lần truy cập tiếp theo được tính lại
+    localStorage.removeItem('has_visited_device');
+    // Không cần SESSION_ID nữa vì chúng ta không dùng sessionStorage để đếm
+    sessionStorage.removeItem(STORAGE_KEYS.SESSION_ID);
     updateCounterDisplays();
   }
 
