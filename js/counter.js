@@ -86,10 +86,30 @@ const SafeTeenAnalytics = (() => {
   }
 
   function recordVisit() {
-    // Đếm mỗi lần người dùng truy cập vào link (mỗi lần tải trang)
-    // Không kiểm tra flag; mỗi lần trang được tải sẽ tăng UNIQUE_VISITORS.
-    const uv = parseInt(localStorage.getItem(STORAGE_KEYS.UNIQUE_VISITORS) || '0', 10) + 1;
-    localStorage.setItem(STORAGE_KEYS.UNIQUE_VISITORS, uv.toString());
+    // Chỉ tăng khi người dùng **đến từ link bên ngoài** (referrer rỗng hoặc khác origin).
+    // Nếu trang được mở từ một trang nội bộ cùng domain, không tăng.
+    const ref = document.referrer;
+    let shouldCount = false;
+    if (!ref) {
+      // Truy cập trực tiếp (đánh dấu, bookmark, address bar) -> tính
+      shouldCount = true;
+    } else {
+      try {
+        const refUrl = new URL(ref);
+        if (refUrl.origin !== location.origin) {
+          // Referrer khác domain -> tính
+          shouldCount = true;
+        }
+      } catch (e) {
+        // Referrer không phải URL hợp lệ, mặc định tính
+        shouldCount = true;
+      }
+    }
+
+    if (shouldCount) {
+      const uv = parseInt(localStorage.getItem(STORAGE_KEYS.UNIQUE_VISITORS) || '0', 10) + 1;
+      localStorage.setItem(STORAGE_KEYS.UNIQUE_VISITORS, uv.toString());
+    }
   }
 
   function incrementChatCount() {
