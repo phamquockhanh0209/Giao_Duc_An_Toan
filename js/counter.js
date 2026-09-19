@@ -81,12 +81,14 @@ const SafeTeenAnalytics = (() => {
   }
 
   function recordVisit() {
-    // CHỈ TĂNG KHI NGƯỜI DÙNG BẤM VÀO LINK MỞ WEBSITE (PHIÊN TRUY CẬP MỚI)
-    // KHI CHUYỂN TRANG NỘI BỘ (index, knowledge, scenarios, quiz, pre-test), SỐ NÀY GIỮ NGUYÊN 100%
-    if (!sessionStorage.getItem(STORAGE_KEYS.SESSION_ID)) {
-      sessionStorage.setItem(STORAGE_KEYS.SESSION_ID, 'true');
-      let uv = parseInt(localStorage.getItem(STORAGE_KEYS.UNIQUE_VISITORS) || '0', 10);
-      uv += 1;
+    // Đếm **một lần duy nhất cho mỗi thiết bị** (không phụ thuộc vào việc đóng/mở trình duyệt)
+    // Khi người dùng truy cập từ một thiết bị mới, tăng chỉ số UNIQUE_VISITORS.
+    // Nếu thiết bị đã được đếm trước đó, không làm gì.
+    const visitedFlag = 'has_visited_device';
+    if (!localStorage.getItem(visitedFlag)) {
+      // Thiết bị chưa được đếm
+      localStorage.setItem(visitedFlag, 'true');
+      const uv = parseInt(localStorage.getItem(STORAGE_KEYS.UNIQUE_VISITORS) || '0', 10) + 1;
       localStorage.setItem(STORAGE_KEYS.UNIQUE_VISITORS, uv.toString());
     }
   }
