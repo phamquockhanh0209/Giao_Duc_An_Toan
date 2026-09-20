@@ -93,13 +93,30 @@ const SafeTeenAnalytics = (() => {
 
   function updateAdminVisibility() {
     const isAdm = isAdmin();
-    const counters = document.querySelectorAll('.footer-visitor-counter, #btnOpenAnalytics, .header-analytics-pill');
-    counters.forEach(el => {
+
+    // Bộ đếm lượt truy cập LUÔN được hiển thị
+    const footerCounter = document.querySelector('.footer-visitor-counter');
+
+    if (footerCounter) {
+      footerCounter.style.display = 'flex';
+    }
+
+    // Chỉ thay đổi nội dung gợi ý khi đã đăng nhập admin
+    const reportButtons = document.querySelectorAll(
+      '#btnOpenAnalytics, .header-analytics-pill'
+    );
+
+    reportButtons.forEach(el => {
       if (isAdm) {
-        el.style.display = 'block';
-        el.setAttribute('title', 'Chế độ Quản trị viên: Bấm để xem báo cáo');
+        el.setAttribute(
+          'title',
+          'Chế độ Quản trị viên: Bấm để xem báo cáo'
+        );
       } else {
-        el.style.display = 'none';
+        el.setAttribute(
+          'title',
+          'Bấm để xem báo cáo đề tài'
+        );
       }
     });
   }
@@ -247,11 +264,22 @@ const SafeTeenAnalytics = (() => {
 
   function setupReportModal() {
     document.addEventListener('click', (e) => {
-      const trigger = e.target.closest('#btnOpenAnalytics, .btn-open-analytics, #btnOpenAnalyticsHeader, .header-analytics-pill');
-      if (trigger) {
-        e.preventDefault();
+      const trigger = e.target.closest(
+        '#btnOpenAnalytics, .btn-open-analytics, #btnOpenAnalyticsHeader, .header-analytics-pill'
+      );
+
+      if (!trigger) return;
+
+      e.preventDefault();
+
+      // Nếu đã xác thực admin → mở báo cáo luôn
+      if (isAdmin()) {
         openReportModal();
+        return;
       }
+
+      // Nếu chưa xác thực → yêu cầu nhập PIN
+      promptAdminAccess();
     });
   }
 
