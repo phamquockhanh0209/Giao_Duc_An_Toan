@@ -107,16 +107,32 @@ const SafeTeenAnalytics = (() => {
   // Tự động đồng bộ số lượt xem thực tế đa thiết bị
   function syncGlobalCounter() {
     try {
-      fetch(`${GLOBAL_API_URL}/up`, { method: 'GET', mode: 'cors' })
+      fetch('/api/visit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          page: window.location.pathname
+        })
+      })
         .then(res => res.json())
         .then(data => {
-          if (data && typeof data.count === 'number') {
-            localStorage.setItem(STORAGE_KEYS.GLOBAL_COUNT, data.count.toString());
+          if (data && typeof data.totalViews === 'number') {
+            localStorage.setItem(
+              STORAGE_KEYS.GLOBAL_COUNT,
+              data.totalViews.toString()
+            );
+
             updateCounterDisplays();
           }
         })
-        .catch(() => {});
-    } catch (e) {}
+        .catch(error => {
+          console.error('Visit tracking error:', error);
+        });
+    } catch (e) {
+      console.error('Visit tracking error:', e);
+    }
   }
 
   function setupSecretTriggers() {
