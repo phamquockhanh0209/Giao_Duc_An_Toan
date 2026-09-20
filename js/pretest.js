@@ -1,248 +1,243 @@
-/**
- * SAFETEEN - Pre-test Question Engine
- * 20 Comprehensive, empathetic baseline assessment questions
- */
-
 const PRETEST_QUESTIONS = [
   {
     id: 1,
-    topic: "Khái niệm ranh giới cá nhân",
-    question: "Khái niệm 'Ranh giới cá nhân' được hiểu chính xác nhất là gì?",
+    topic: "Ranh giới cá nhân",
+    question: "Bạn thân cầm điện thoại của bạn và hỏi: “Cho mình xem đoạn chat với người kia được không?” Bạn không muốn cho xem, nhưng cũng không muốn làm bạn khó xử. Bạn sẽ:",
     options: [
-      "Khoảng cách vật lý tối thiểu khi giao tiếp với người lạ ngoài xã hội.",
-      "Các giới hạn vô hình do mỗi cá nhân thiết lập để bảo vệ không gian thể chất, cảm xúc và tinh thần của mình khỏi sự xâm phạm.",
-      "Quy định nội quy của nhà trường về hành vi ứng xử giữa các học sinh.",
-      "Rào cản tâm lý khiến học sinh không muốn giao tiếp với bạn bè cùng trang lứa."
+      "Nói rằng bạn hơi ngại chia sẻ đoạn chat này, nhưng có thể kể lại nội dung nếu bạn ấy muốn biết.",
+      "Nói rằng bạn không muốn cho xem, sau đó giải thích thêm vì sao bạn cần giữ riêng cuộc trò chuyện.",
+      "Nói rằng bạn tin bạn ấy nhưng vẫn muốn tự quyết định những nội dung nào mình chia sẻ.",
+      "Nói rằng đoạn chat này thuộc về cuộc trò chuyện riêng nên bạn không tiện cho người khác xem."
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 2,
     topic: "Ranh giới thể chất",
-    question: "Ranh giới thể chất bao gồm những yếu tố nào sau đây?",
+    question: "Một người bạn ôm bạn khi gặp mặt. Bạn không thích nhưng không nói gì. Một tuần sau, bạn ấy lại làm vậy. Bạn muốn thay đổi tình huống.",
     options: [
-      "Không gian cá nhân xung quanh cơ thể và quyền quyết định ai được chạm vào cơ thể mình.",
-      "Quyền giữ kín mật khẩu tài khoản mạng xã hội cá nhân.",
-      "Cảm xúc và tâm trạng cá nhân khi bị người khác phán xét.",
-      "Quan điểm sống và định hướng nghề nghiệp trong tương lai."
+      "Nói rằng lần trước bạn không phản ứng vì chưa biết nên nói thế nào, nhưng lần sau bạn muốn được hỏi trước.",
+      "Nói rằng bạn không thích việc đó, dù trước đây bạn đã từng im lặng trong tình huống tương tự.",
+      "Nói rằng từ bây giờ bạn không muốn bị ôm nếu bạn chưa chủ động thể hiện mong muốn.",
+      "Nói rằng bạn hơi không thoải mái với việc đó và mong bạn ấy để ý phản ứng của bạn hơn."
     ],
     correctAnswer: 0
   },
   {
     id: 3,
-    topic: "Ranh giới cảm xúc",
-    question: "Đâu là biểu hiện của việc vi phạm 'Ranh giới cảm xúc' trong môi trường học đường?",
+    topic: "Ranh giới kỹ thuật số",
+    question: "Một người nói: “Nếu bạn không cho mình biết mật khẩu thì mình sẽ nghĩ bạn không tin mình.” Bạn không muốn chia sẻ.",
     options: [
-      "Mượn bút của bạn mà không xin phép trước.",
-      "Đứng quá gần bàn học khi trò chuyện.",
-      "Liên tục ép buộc bạn bè phải chia sẻ bí mật riêng tư hoặc dùng lời lẽ thao túng tâm lý (gaslighting) khiến bạn cảm thấy có lỗi.",
-      "Nhắn tin hỏi bài tập về nhà vào buổi tối muộn."
+      "Nói rằng bạn tin người đó nhưng không muốn dùng mật khẩu để chứng minh điều đó.",
+      "Nói rằng mật khẩu là thông tin riêng và bạn không chia sẻ cho người khác.",
+      "Nói rằng sự tin tưởng giữa hai người không nên được quyết định bằng việc có biết mật khẩu hay không.",
+      "Nói rằng bạn hiểu cảm giác của người đó nhưng vẫn muốn giữ mật khẩu cho riêng mình."
     ],
     correctAnswer: 2
   },
   {
     id: 4,
-    topic: "Ranh giới kỹ thuật số",
-    question: "Trong thời đại số, 'Ranh giới kỹ thuật số' liên quan trực tiếp đến vấn đề nào?",
+    topic: "Ranh giới vật chất",
+    question: "Bạn đã đồng ý cho bạn mượn một món đồ vào ngày mai. Tối nay bạn phát hiện mình cần dùng món đồ đó. Bạn nên:",
     options: [
-      "Thời gian sử dụng điện thoại thông minh để chơi game mỗi ngày.",
-      "Quyền kiểm soát hình ảnh cá nhân, thông tin riêng tư và quyền từ chối phản hồi tin nhắn quấy rối trên không gian mạng.",
-      "Tốc độ đường truyền internet khi học tập trực tuyến.",
-      "Việc lựa chọn dòng điện thoại di động phù hợp với học sinh."
+      "Báo sớm rằng bạn không thể cho mượn như đã dự định và chấp nhận việc người kia có thể thất vọng.",
+      "Hỏi xem người kia có thực sự cần món đồ đó ngày mai không rồi mới quyết định.",
+      "Tìm một món đồ khác thay thế nếu việc thay đổi quyết định có thể gây bất tiện cho người kia.",
+      "Giữ lời hứa ban đầu nếu chưa có lý do đặc biệt khiến việc cho mượn trở nên không thể."
     ],
-    correctAnswer: 1
+    correctAnswer: 0
   },
   {
     id: 5,
-    topic: "Dấu hiệu cảnh báo (Red Flags)",
-    question: "Dấu hiệu cảnh báo sớm cho thấy một mối quan hệ bạn bè hoặc tình cảm tuổi học trò bắt đầu có nguy cơ vượt quá ranh giới an toàn là gì?",
+    topic: "Bảo mật thông tin",
+    question: "Một người bạn kể cho bạn một chuyện riêng tư và nói: “Đừng kể ai nhé.” Sau đó bạn nhận thấy chuyện này khiến bạn lo lắng cho sự an toàn của bạn ấy. Bạn sẽ:",
     options: [
-      "Tôn trọng không gian riêng và sở thích cá nhân của nhau.",
-      "Có sự ghen tuông cực đoan, kiểm soát tin nhắn, ép buộc người khác phải báo cáo lịch trình 24/7.",
-      "Lắng nghe và chia sẻ những khó khăn trong học tập.",
-      "Cùng tham gia các hoạt động ngoại khóa của trường."
+      "Giữ kín vì người đó đã trực tiếp yêu cầu bạn không nói.",
+      "Hỏi bạn ấy xem bạn có thể chia sẻ với một người đáng tin cậy để tìm cách hỗ trợ hay không.",
+      "Tìm một người đáng tin cậy để trao đổi mà không cần nói lại toàn bộ câu chuyện.",
+      "Tôn trọng mong muốn giữ bí mật trước, trừ khi xuất hiện thêm dấu hiệu cho thấy cần tìm sự hỗ trợ."
     ],
     correctAnswer: 1
   },
   {
     id: 6,
-    topic: "Xâm phạm ranh giới thể chất",
-    question: "Hành vi nào sau đây được coi là xâm phạm ranh giới thể chất nhưng ít được học sinh chú ý phòng tránh?",
+    topic: "Ranh giới kỹ thuật số",
+    question: "Bạn đăng một bức ảnh lên mạng và sau đó đổi ý, không muốn bức ảnh tiếp tục được chia sẻ. Bạn nên:",
     options: [
-      "Cố ý đụng chạm cơ thể (ôm, ghì, vỗ mông, sờ soạng) dù nạn nhân đã tỏ thái độ khó chịu hoặc nói 'không'.",
-      "Đá bóng vô tình trúng người khác trong giờ thể dục.",
-      "Bắt tay xã giao khi gặp thầy cô giáo cũ.",
-      "Đứng xếp hàng mua đồ ăn tại căn tin trường."
+      "Xóa bài đăng và đề nghị những người đã chia sẻ ảnh không tiếp tục đăng lại.",
+      "Xóa bài đăng vì quyền quyết định hình ảnh cá nhân vẫn thuộc về bạn.",
+      "Nhắn những người đã chia sẻ rằng bạn không còn muốn bức ảnh được sử dụng.",
+      "Xóa bài và chấp nhận rằng những bản sao đã được người khác lưu lại có thể không còn nằm trong kiểm soát của bạn."
+    ],
+    correctAnswer: 3
+  },
+  {
+    id: 7,
+    topic: "Ranh giới cá nhân",
+    question: "Một người bạn thường xuyên nhắn: “Bạn đang làm gì?”, “Ở đâu?”, “Với ai?”. Bạn đã trả lời nhiều lần nhưng bắt đầu thấy không thoải mái.",
+    options: [
+      "Nói rằng bạn không muốn trả lời những câu hỏi này thường xuyên, nhưng vẫn có thể chia sẻ khi bạn chủ động muốn.",
+      "Nói rằng bạn thấy hơi áp lực khi phải cập nhật thường xuyên và muốn giảm những câu hỏi như vậy.",
+      "Nói rằng bạn không muốn chia sẻ lịch trình cá nhân, kể cả khi người hỏi là bạn thân.",
+      "Giảm trả lời các câu hỏi đó để tạo khoảng cách mà không cần phải nói trực tiếp."
     ],
     correctAnswer: 0
   },
   {
-    id: 7,
-    topic: "Tôn trọng nhân phẩm & cảm xúc",
-    question: "Hiện tượng 'Body Shaming' trên lớp học hoặc mạng xã hội vi phạm loại ranh giới nào của cá nhân?",
-    options: [
-      "Ranh giới tài chính.",
-      "Ranh giới cảm xúc và nhân phẩm cá nhân.",
-      "Ranh giới thời gian.",
-      "Ranh giới học thuật."
-    ],
-    correctAnswer: 1
-  },
-  {
     id: 8,
     topic: "Kỹ năng phản ứng kiên quyết",
-    question: "Khi một người bạn có hành vi đùa cợt quá trớn, chạm vào vùng nhạy cảm trên cơ thể khiến bạn cảm thấy bất an, phản ứng ĐÚNG ĐẮN và kiên quyết nhất là gì?",
+    question: "Một người nói: “Mình chỉ đùa thôi, bạn làm gì căng vậy?” Bạn không chắc họ có cố tình làm bạn khó chịu hay không.",
     options: [
-      "Giữ im lặng và nín nhịn vì sợ mất lòng bạn bè.",
-      "Lập tức bày tỏ thái độ nghiêm túc, nói rõ ràng 'Tôi không thích điều này, hãy dừng lại ngay', đồng thời rời khỏi vị trí đó.",
-      "Đánh trả bằng bạo lực ngay lập tức tại chỗ.",
-      "Đăng tải bức xúc lên mạng xã hội chửi bới."
+      "Bỏ qua nếu người đó không có ý định làm bạn khó chịu.",
+      "Nói rằng bạn hiểu họ có thể chỉ đang đùa, nhưng bạn vẫn không muốn kiểu đùa đó tiếp tục.",
+      "Hỏi người đó có thực sự muốn làm bạn khó chịu không trước khi phản ứng.",
+      "Chờ xem người đó có lặp lại hành vi rồi mới xác định mình có nên đặt giới hạn."
     ],
     correctAnswer: 1
   },
   {
     id: 9,
-    topic: "Thiết lập ranh giới cá nhân",
-    question: "Đâu là biểu hiện của việc thiếu kỹ năng thiết lập ranh giới ở học sinh THPT?",
+    topic: "Từ chối",
+    question: "Bạn từ chối một lời đề nghị. Người kia nói: “Mình hiểu, nhưng bạn có thể suy nghĩ lại không?” Bạn vẫn không muốn.",
     options: [
-      "Biết từ chối khéo léo khi được nhờ vả những việc trái với nguyên tắc đạo đức.",
-      "Luôn cảm thấy áy náy, sợ hãi khi nói 'Không' ngay cả khi bản thân bị ép buộc hoặc đối xử bất công.",
-      "Chủ động bảo vệ thông tin cá nhân trên mạng xã hội.",
-      "Biết tìm kiếm sự giúp đỡ từ người lớn khi gặp nguy hiểm."
-    ],
-    correctAnswer: 1
-  },
-  {
-    id: 10,
-    topic: "Quấy rối trên không gian mạng",
-    question: "Hình thức quấy rối qua mạng nào phổ biến và gây tổn thương tâm lý nặng nề nhất cho học sinh THPT?",
-    options: [
-      "Nhắn tin chúc ngủ ngon mỗi tối.",
-      "Lập hội nhóm bôi nhọ, tung tin đồn giả mạo, hoặc phát tán hình ảnh nhạy cảm/clip cá nhân không được sự đồng thuận.",
-      "Gửi email thông báo lịch học nhóm.",
-      "Kết bạn trên mạng xã hội nhưng không tương tác."
-    ],
-    correctAnswer: 1
-  },
-  {
-    id: 11,
-    topic: "Ứng phó nguy cơ vượt giới hạn",
-    question: "Trong tình huống bị người quen (đàn anh khóa trên, giáo viên, hoặc người đáng tin cậy) có hành vi dụ dỗ, tiếp cận vượt quá giới hạn an toàn, học sinh nên thực hiện bước đầu tiên nào?",
-    options: [
-      "Giữ kín vì sợ bị đe dọa hoặc ảnh hưởng đến danh tiếng.",
-      "Ngay lập tức từ chối mạnh mẽ, lưu giữ lại bằng chứng (tin nhắn, ghi âm nếu có) và chia sẻ ngay với phụ huynh hoặc người có thẩm quyền.",
-      "Tự mình hẹn gặp riêng người đó để giải quyết dứt điểm.",
-      "Nghỉ học ở nhà để tránh mặt."
-    ],
-    correctAnswer: 1
-  },
-  {
-    id: 12,
-    topic: "Rào cản tâm lý khi tìm trợ giúp",
-    question: "Tại sao nhiều học sinh THPT thường ngần ngại, không dám lên tiếng hoặc tìm kiếm sự trợ giúp khi bị xâm phạm ranh giới cá nhân?",
-    options: [
-      "Do tâm lý sợ bị phán xét, sợ bị mang tiếng, thiếu sự tin tưởng vào người lớn hoặc sợ bố mẹ mắng mỏ.",
-      "Do các em quá bận rộn với việc học văn hóa.",
-      "Do nhà trường không có quy định nào về vấn đề này.",
-      "Do các em thích thú với trải nghiệm đó."
+      "Nhắc lại rằng bạn đã cân nhắc và hiện tại vẫn không muốn đồng ý.",
+      "Giải thích thêm lý do để người kia hiểu quyết định của bạn rõ hơn.",
+      "Nói rằng bạn hiểu mong muốn của người kia nhưng quyết định của bạn vẫn không thay đổi.",
+      "Đề nghị một lựa chọn khác để người kia không cảm thấy bị từ chối hoàn toàn."
     ],
     correctAnswer: 0
   },
   {
-    id: 13,
-    topic: "Giao tiếp quyết đoán (Assertiveness)",
-    question: "Kỹ năng giao tiếp quyết đoán giúp học sinh bảo vệ ranh giới cá nhân như thế nào?",
+    id: 10,
+    topic: "Thiết lập ranh giới",
+    question: "Một người trước đây luôn tôn trọng ranh giới của bạn. Hôm nay họ làm một việc bạn không thích nhưng có vẻ không biết bạn không thích điều đó.",
     options: [
-      "Giúp học sinh áp đặt suy nghĩ của mình lên người khác.",
-      "Giúp học sinh bày tỏ suy nghĩ, cảm xúc và từ chối điều không muốn một cách rõ ràng, tôn trọng bản thân nhưng không dùng bạo lực.",
-      "Giúp học sinh luôn nhượng bộ để giữ hòa khí.",
-      "Giúp học sinh nói dối khéo léo để tránh né vấn đề."
+      "Nhắc lại ranh giới để người đó biết cách cư xử phù hợp trong những lần sau.",
+      "Không nên trách người đó vì họ chưa từng được bạn nói rõ về điều này.",
+      "Nói rằng bạn không thoải mái với hành động đó và muốn họ hỏi trước trong tương lai.",
+      "Xem đây là một lần hiểu nhầm và chỉ nói nếu hành động đó tiếp tục."
+    ],
+    correctAnswer: 2
+  },
+  {
+    id: 11,
+    topic: "Kỹ năng phản ứng kiên quyết",
+    question: "Bạn nói “Không” nhưng người kia vẫn tiếp tục thuyết phục. Bạn không muốn tranh cãi.",
+    options: [
+      "Lặp lại quyết định bằng một câu ngắn rồi kết thúc cuộc trao đổi.",
+      "Giải thích thêm để người kia hiểu tại sao bạn không thể đồng ý.",
+      "Đưa ra một phương án thay thế để cả hai cùng cảm thấy dễ chịu hơn.",
+      "Tạm thời đồng ý rồi sau đó nói rõ rằng bạn thực sự không muốn."
+    ],
+    correctAnswer: 0
+  },
+  {
+    id: 12,
+    topic: "Áp lực từ bạn bè",
+    question: "Một người bạn nói: “Nếu cậu thực sự coi tớ là bạn thì cậu sẽ làm việc này.” Bạn không muốn làm.",
+    options: [
+      "Nói rằng bạn hiểu việc đó quan trọng với bạn ấy nhưng mình vẫn không muốn thực hiện.",
+      "Hỏi xem việc đó quan trọng đến mức nào trước khi quyết định có từ chối hay không.",
+      "Từ chối nếu yêu cầu vượt quá điều bạn cảm thấy thoải mái, dù người đó có thể buồn.",
+      "Nói rằng tình bạn không nên được dùng để gây áp lực cho quyết định của nhau."
+    ],
+    correctAnswer: 3
+  },
+  {
+    id: 13,
+    topic: "Sự đồng thuận",
+    question: "Bạn đã từng đồng ý cho một người chạm vào vai mình khi chụp ảnh. Lần sau người đó muốn tiếp tục làm vậy. Bạn không muốn nữa.",
+    options: [
+      "Bạn nên nói trước khi chụp rằng lần này bạn không muốn hành động đó.",
+      "Bạn có thể từ chối vì sự đồng ý trong lần trước không quyết định cho lần này.",
+      "Bạn nên giải thích rằng lần trước bạn đồng ý nhưng hiện tại cảm thấy khác.",
+      "Bạn có thể đồng ý nếu hành động lần này vẫn giống hoàn cảnh lần trước."
     ],
     correctAnswer: 1
   },
   {
     id: 14,
-    topic: "An toàn không gian mạng",
-    question: "Biện pháp phòng ngừa rủi ro từ không gian mạng hiệu quả nhất đối với học sinh THPT là gì?",
+    topic: "Ranh giới kỹ thuật số",
+    question: "Bạn không muốn chia sẻ vị trí hiện tại với một người bạn. Người đó nói: “Tớ chỉ muốn biết cậu đang ở đâu để yên tâm thôi.”",
     options: [
-      "Khóa toàn bộ tài khoản mạng xã hội, không bao giờ truy cập internet.",
-      "Cài đặt chế độ riêng tư tài khoản, không chia sẻ hình ảnh quá nhạy cảm/vị trí thời gian thực, và cảnh giác với người lạ trên mạng.",
-      "Chấp nhận kết bạn và chia sẻ mật khẩu với tất cả mọi người.",
-      "Sử dụng tài khoản ảo để lăng mạ người khác."
+      "Chia sẻ vị trí trong một khoảng thời gian ngắn rồi tắt lại sau đó.",
+      "Nói rằng bạn hiểu lý do của bạn ấy nhưng hiện tại không muốn chia sẻ vị trí.",
+      "Hỏi xem bạn ấy lo lắng điều gì rồi quyết định có chia sẻ hay không.",
+      "Chia sẻ nếu người đó đã từng biết vị trí của bạn trong những lần trước."
     ],
     correctAnswer: 1
   },
   {
     id: 15,
-    topic: "Đồng hành & Hỗ trợ bạn bè",
-    question: "Khi phát hiện bạn bè cùng lớp có dấu hiệu bị xâm phạm tâm lý hoặc bạo lực học đường dẫn đến trầm cảm, rụt rè, giải pháp hỗ trợ nào từ phía tập thể lớp là phù hợp nhất?",
+    topic: "Khái niệm ranh giới cá nhân",
+    question: "Phát biểu nào gần đúng nhất?",
     options: [
-      "Hùa theo số đông để trêu chọc bạn.",
-      "Lờ đi vì không phải chuyện của mình.",
-      "Chủ động hỏi thăm, đồng hành, tạo không gian an toàn và báo cáo cho giáo viên chủ nhiệm hoặc phòng tư vấn tâm lý học đường.",
-      "Khuyên bạn tự chịu đựng để mạnh mẽ hơn."
+      "Đặt ranh giới nghĩa là nói rõ điều mình muốn người khác làm hoặc không làm.",
+      "Đặt ranh giới nghĩa là bảo vệ điều khiến mình cảm thấy thoải mái trong một mối quan hệ.",
+      "Đặt ranh giới nghĩa là xác định điều mình chấp nhận và lựa chọn cách mình phản ứng khi giới hạn đó bị vượt qua.",
+      "Đặt ranh giới nghĩa là giúp người khác hiểu những điều họ cần tránh khi tương tác với mình."
     ],
     correctAnswer: 2
   },
   {
     id: 16,
-    topic: "Vai trò tư vấn học đường",
-    question: "Vai trò của 'Phòng Tư vấn tâm lý học đường' trong việc hỗ trợ học sinh xây dựng ranh giới cá nhân là gì?",
+    topic: "Sự đồng thuận",
+    question: "Một người nói: “Cậu không nói không nên tớ nghĩ là cậu đồng ý.” Điều nào chính xác nhất?",
     options: [
-      "Kỷ luật và đuổi học những học sinh vi phạm.",
-      "Cung cấp không gian bảo mật, lắng nghe, đánh giá mức độ tổn thương và huấn luyện kỹ năng ứng phó, chữa lành tâm lý cho học sinh.",
-      "Quản lý điểm số và hạnh kiểm của học sinh.",
-      "Tổ chức các trận thi đấu thể thao ngoại khóa."
-    ],
-    correctAnswer: 1
-  },
-  {
-    id: 17,
-    topic: "Mô hình xử lý khẩn cấp",
-    question: "Đâu KHÔNG phải là một bước trong mô hình xử lý tình huống khẩn cấp khi bị xâm phạm ranh giới?",
-    options: [
-      "Stop (Dừng lại, không tiếp tục dung túng hành vi).",
-      "Tell (Kể lại, báo cáo với người có thẩm quyền/tin cậy).",
-      "Obey (Tuân theo và làm mọi thứ theo yêu cầu của kẻ xâm phạm để được yên thân).",
-      "Protect (Bảo vệ bản thân, thu thập bằng chứng)."
+      "Nếu tình huống không khiến bạn phản ứng thì người kia có thể hiểu theo cách đó.",
+      "Nếu bạn đã từng đồng ý với hành động tương tự thì sự im lặng lần này có thể được hiểu là tiếp tục đồng ý.",
+      "Nếu bạn không phản đối tại thời điểm đó thì sau này vẫn có thể nói rằng mình không thoải mái.",
+      "Nếu hai người đã quen nhau lâu thì việc im lặng có thể được hiểu khác với người mới quen."
     ],
     correctAnswer: 2
   },
   {
-    id: 18,
-    topic: "Giải pháp xây dựng học đường an toàn",
-    question: "Để xây dựng một môi trường học đường an toàn, lành mạnh, giải pháp mang tính vĩ mô và bền vững nhất từ nhà trường là gì?",
+    id: 17,
+    topic: "Bí mật cá nhân",
+    question: "Bạn muốn giữ một bí mật cá nhân. Một người bạn nói rằng họ cảm thấy bị xa cách vì bạn không kể. Điều nào phù hợp nhất?",
     options: [
-      "Lắp camera giám sát ở mọi ngóc ngách kể cả nhà vệ sinh.",
-      "Xây dựng bộ quy tắc ứng xử học đường rõ ràng, đưa giáo dục giới tính, kỹ năng sống và phòng chống xâm phạm vào chương trình chính khóa/ngoại khóa.",
-      "Cấm học sinh mang điện thoại đến trường.",
-      "Phạt nặng tất cả học sinh vi phạm kỷ luật mà không cần điều tra nguyên nhân."
+      "Chia sẻ một phần để duy trì sự gần gũi nhưng vẫn giữ lại những nội dung nhạy cảm.",
+      "Nói rằng bạn quý mối quan hệ nhưng vẫn muốn giữ một số chuyện thuộc về riêng mình.",
+      "Giải thích rằng sự thân thiết không nhất thiết yêu cầu hai người phải biết mọi chuyện của nhau.",
+      "Giữ nguyên quyết định và tránh tiếp tục chủ đề này để không tạo thêm áp lực."
     ],
     correctAnswer: 1
   },
   {
-    id: 19,
-    topic: "Trách nhiệm tôn trọng người khác",
-    question: "Phát biểu nào sau đây là ĐÚNG về trách nhiệm của học sinh trong việc tôn trọng ranh giới cá nhân của người khác?",
+    id: 18,
+    topic: "Kỹ năng từ chối",
+    question: "Một người bạn liên tục đề nghị bạn làm một việc. Bạn đã từ chối hai lần nhưng họ vẫn nói: “Chỉ lần này thôi.” Bạn bắt đầu thấy khó xử.",
     options: [
-      "Ranh giới cá nhân chỉ áp dụng cho con gái, con trai không cần quan tâm.",
-      "Tôn trọng ranh giới của người khác cũng chính là bảo vệ ranh giới và phẩm giá của chính mình; không được đùa cợt quá giới hạn hay ép buộc người khác.",
-      "Chỉ cần tôn trọng thầy cô giáo, còn bạn bè thì muốn đùa thế nào cũng được.",
-      "Có quyền xâm phạm không gian của người khác nếu đó chỉ là bạn thân thiết."
+      "Nói lại quyết định của mình và không tiếp tục tranh luận về việc có đồng ý hay không.",
+      "Giải thích thêm lý do để người đó hiểu rằng bạn không từ chối vì không quan tâm.",
+      "Đề nghị một cách khác để giúp người đó nhưng không thực hiện điều bạn đã từ chối.",
+      "Nói rằng bạn không muốn làm nhưng có thể cân nhắc nếu tình huống được thay đổi."
+    ],
+    correctAnswer: 0
+  },
+  {
+    id: 19,
+    topic: "Ranh giới thông tin",
+    question: "Một người luôn đối xử tốt với bạn nhưng có một lần hỏi bạn một thông tin mà bạn không muốn chia sẻ. Điều nào phù hợp nhất?",
+    options: [
+      "Có thể chia sẻ vì trước đây người đó đã cho thấy họ đáng tin cậy.",
+      "Có thể từ chối vì mức độ tin tưởng không quyết định hoàn toàn việc mình phải chia sẻ.",
+      "Nên giải thích lý do từ chối để người đó không hiểu rằng mình đang nghi ngờ họ.",
+      "Có thể chia sẻ một phần nếu thông tin đó không gây ảnh hưởng quá lớn đến mình."
     ],
     correctAnswer: 1
   },
   {
     id: 20,
-    topic: "Ranh giới vật chất & tài chính",
-    question: "Khi một người bạn mượn tiền (hoặc đồ vật giá trị) nhiều lần nhưng liên tục kì kèo, trốn tránh việc trả lại, điều này vi phạm loại ranh giới nào?",
+    topic: "Cách tiếp cận ranh giới cá nhân",
+    question: "Trong các tình huống liên quan đến ranh giới cá nhân, lựa chọn nào thể hiện cách tiếp cận phù hợp nhất?",
     options: [
-      "Ranh giới vật chất và tài chính cá nhân.",
-      "Ranh giới cảm xúc thuần túy.",
-      "Ranh giới học thuật.",
-      "Ranh giới không gian mạng."
+      "Ưu tiên cảm xúc của mình nhưng vẫn cân nhắc hoàn cảnh và phản ứng của người khác.",
+      "Xác định điều mình chấp nhận, trao đổi rõ ràng và lựa chọn cách xử lý phù hợp nếu ranh giới không được tôn trọng.",
+      "Nói rõ điều mình không thích và giữ nguyên quyết định bất kể hoàn cảnh thay đổi thế nào.",
+      "Cân bằng nhu cầu của mình với mong muốn của người khác trước khi quyết định có nên đặt ranh giới."
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   }
 ];
 
@@ -318,7 +313,7 @@ const PreTestController = (() => {
     const displayIndex = (index + 1).toString().padStart(2, '0');
     const displayTotal = total.toString().padStart(2, '0');
     elements.counterText.textContent = `Câu ${displayIndex} / ${displayTotal}`;
-    
+
     const progressPercent = ((index + 1) / total) * 100;
     elements.progressBar.style.width = `${progressPercent}%`;
 

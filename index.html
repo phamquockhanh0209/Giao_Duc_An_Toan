@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SafeTeen · Hiểu ranh giới – Tôn trọng bản thân – Biết cách bảo vệ mình</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <!-- SITE HEADER -->
@@ -18,16 +20,12 @@
 
       <nav class="site-nav" aria-label="Điều hướng chính">
         <a href="index.html" class="nav-link active">Trang chủ</a>
-        <a href="knowledge.html" class="nav-link">Kiến thức</a>
+        <a href="knowledge.html" class="nav-link">Sổ tay Safeteen</a>
         <a href="scenarios.html" class="nav-link">Tình huống</a>
         <a href="quiz.html" class="nav-link">Quiz</a>
       </nav>
 
       <div class="header-actions">
-        <button type="button" class="btn-chat-header" id="btnOpenChatHeader" aria-label="Mở Boxchat Tâm sự">
-          <span class="chat-pulse-dot"></span>
-          <span>AI Tâm sự & Hỗ trợ</span>
-        </button>
         <div id="headerUserStatus">
           <!-- Populated by main.js -->
         </div>
@@ -35,7 +33,12 @@
           Kết quả của tôi
         </button>
         <button type="button" class="mobile-nav-toggle" aria-label="Mở menu">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
         </button>
       </div>
     </div>
@@ -51,7 +54,8 @@
             Ranh giới của bạn<br>xứng đáng được tôn trọng.
           </h1>
           <p class="hero-description">
-            SafeTeen giúp học sinh THPT hiểu về ranh giới cá nhân, sự đồng thuận, quyền riêng tư và cách xử lý những tình huống khiến bạn cảm thấy không thoải mái hoặc không an toàn.
+            SafeTeen giúp học sinh hiểu về ranh giới cá nhân, sự đồng thuận, quyền riêng tư và cách xử lý những tình
+            huống khiến bạn cảm thấy không thoải mái hoặc không an toàn.
           </p>
           <div class="hero-actions">
             <a href="knowledge.html" class="btn btn-primary">
@@ -61,100 +65,212 @@
               Xem tình huống
             </a>
           </div>
-          <div class="hero-meta-note">
-            <span>• Dành riêng cho học sinh THPT</span>
-            <span style="margin-left: 0.5rem;">• Không phán xét · Ngôn ngữ an toàn</span>
+
+          <!-- Feature badges -->
+          <div class="hero-badge-tags">
+            <span class="hero-badge-item"><span class="badge-icon">🎓</span> Dành riêng cho học sinh THPT</span>
+            <span class="hero-badge-item"><span class="badge-icon">🛡️</span> Không phán xét · Ngôn ngữ an toàn</span>
+            <span class="hero-badge-item"><span class="badge-icon">💖</span> Luôn đồng hành cùng bạn</span>
           </div>
         </div>
 
-        <!-- Right Editorial Graphic -->
-        <div class="editorial-art-card">
-          <div class="art-badge">QUY TẮC CỐT LÕI</div>
-          <blockquote class="art-quote">
-            “Bảo vệ ranh giới cá nhân không đồng nghĩa với ích kỷ hay thiếu tôn trọng người khác.”
-          </blockquote>
-          <div class="art-line-decor"></div>
-          <div class="art-three-values">
-            <div class="art-val-item">
-              <span class="art-val-num">01</span>
-              <div class="art-val-label">Tự nguyện</div>
-            </div>
-            <div class="art-val-item">
-              <span class="art-val-num">02</span>
-              <div class="art-val-label">Rõ ràng</div>
-            </div>
-            <div class="art-val-item">
-              <span class="art-val-num">03</span>
-              <div class="art-val-label">Có thể đổi ý</div>
-            </div>
-          </div>
+        <!-- KHUNG ẢNH 1: BÊN PHẢI HERO "RANH GIỚI CỦA BẠN XỨNG ĐÁNG ĐƯỢC TÔN TRỌNG" (Bạn có thể đổi file ảnh tại assets/images/anh1.jpg) -->
+        <div class="hero-image-frame">
+          <img src="assets/images/banner1.webp" alt="SafeTeen Banner - Ranh giới của bạn xứng đáng được tôn trọng"
+            class="hero-img">
         </div>
       </div>
     </section>
 
-    <!-- SECTION: SAFETEEN LÀ GÌ? -->
+    <!-- SECTION: GÓC NHÌN THỰC TẾ (2 CỘT: ẢNH BÊN TRÁI & NỘI DUNG BÊN PHẢI) -->
     <section class="section section-subtle">
-      <div class="container container-prose">
-        <span class="eyebrow eyebrow-accent">GÓC NHÌN THỰC TẾ</span>
-        <h2 style="font-size: 2.2rem; margin-bottom: 1.25rem;">
-          Không phải lúc nào ranh giới cũng rõ ràng.
-        </h2>
-        <p class="lead" style="margin-bottom: 1.25rem;">
-          Có những tình huống bắt đầu rất bình thường nhưng dần trở thành áp lực. Hiểu ranh giới cá nhân giúp bạn nhận ra khi nào mình đang không thoải mái, biết cách nói “không” và tìm kiếm sự hỗ trợ khi cần.
-        </p>
-        <p style="color: var(--color-muted); line-height: 1.7;">
-          Ở lứa tuổi học sinh, chúng ta thường sợ làm bạn bè mất lòng, sợ bị cô lập hoặc cho rằng "bạn bè trêu tí có sao đâu". Nhưng sự tôn trọng chỉ thực sự tồn tại khi ranh giới của mỗi người được lắng nghe và giữ gìn.
-        </p>
+      <div class="container">
+        <div class="real-look-grid">
+          <!-- KHUNG ẢNH 2: BÊN TRÁI GÓC NHÌN THỰC TẾ (Bạn có thể đổi file ảnh tại assets/images/anh2.jpg) -->
+          <div class="real-look-image-frame">
+            <div class="real-look-sticker">“An toàn cũng là một dạng của hạnh phúc.” ♡</div>
+            <img src="assets/images/banner2.jpg" alt="Góc nhìn thực tế học đường SafeTeen" class="real-look-img">
+          </div>
+
+          <!-- NỘI DUNG BÊN PHẢI -->
+          <div>
+            <span class="eyebrow eyebrow-accent">GÓC NHÌN THỰC TẾ</span>
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.25rem;">
+              Không phải lúc nào ranh giới cũng rõ ràng.
+            </h2>
+            <p class="lead" style="margin-bottom: 1.25rem;">
+              Có những tình huống bắt đầu rất bình thường nhưng dần trở thành áp lực. Hiểu ranh giới cá nhân giúp bạn
+              nhận ra khi nào mình đang không thoải mái, biết cách nói “không” và tìm kiếm sự hỗ trợ khi cần.
+            </p>
+            <p style="color: var(--color-muted); line-height: 1.7; margin-bottom: 1.25rem;">
+              Ở lứa tuổi học sinh, chúng ta thường sợ làm bạn bè mất lòng, sợ bị cô lập hoặc cho rằng "bạn bè trêu tí có
+              sao đâu". Nhưng sự tôn trọng chỉ thực sự tồn tại khi ranh giới của mỗi người được lắng nghe và giữ gìn.
+            </p>
+
+            <!-- 3 TIỆN ÍCH / ĐIỂM NỔI BẬT NHỎ -->
+            <div class="real-look-features">
+              <div class="real-look-feature-card">
+                <span class="real-look-feature-icon">🌸</span>
+                <div>
+                  <strong>Tình huống đời thực</strong>
+                  <span>Gần gũi, dễ nhận biết</span>
+                </div>
+              </div>
+              <div class="real-look-feature-card">
+                <span class="real-look-feature-icon">💡</span>
+                <div>
+                  <strong>Kiến thức dễ hiểu</strong>
+                  <span>Ngôn ngữ thân thiện</span>
+                </div>
+              </div>
+              <div class="real-look-feature-card">
+                <span class="real-look-feature-icon">💖</span>
+                <div>
+                  <strong>Luôn có người đồng hành</strong>
+                  <span>Bạn không đơn độc</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- SECTION: 3 TRỤC NỘI DUNG -->
     <section class="section">
       <div class="container">
-        <div style="max-width: 680px; margin-bottom: var(--space-xl);">
-          <span class="eyebrow">HỆ THỐNG KIẾN THỨC</span>
-          <h2>3 Trục nội dung chính</h2>
-          <p class="lead" style="margin-bottom: 0;">
-            Chương trình được thiết kế theo lộ trình khoa học từ nhận thức đến hành động thực tế.
-          </p>
+        <!-- HEADER 2 CỘT: TIÊU ĐỀ BÊN TRÁI & KHUNG ẢNH BÊN PHẢI -->
+        <div class="pillars-header-grid">
+          <div>
+            <span class="eyebrow">SAFETEEN — HỆ THỐNG KIẾN THỨC</span>
+            <h2>3 Trục nội dung chính</h2>
+            <p class="lead" style="margin-bottom: 0;">
+              Chương trình được thiết kế theo lộ trình khoa học từ nhận thức đến hành động thực tế.
+            </p>
+          </div>
+
+          <!-- KHUNG ẢNH 3: BÊN PHẢI 3 TRỤC NỘI DUNG CHÍNH (Bạn có thể đổi file ảnh tại assets/images/anh3.jpg) -->
+          <div class="pillars-header-banner">
+            <img src="assets/images/banner3.avif" alt="SafeTeen - 3 Trục nội dung chính" class="pillars-header-img">
+            <div class="pillars-header-caption">Kiến thức hôm nay · An toàn ngày mai ♡</div>
+          </div>
         </div>
 
         <div class="pillars-list">
           <!-- 01 HIỂU -->
-          <div class="pillar-row">
-            <div class="pillar-number">01</div>
-            <div class="pillar-title">HIỂU</div>
-            <ul class="pillar-items">
-              <li>Ranh giới cá nhân</li>
-              <li>Sự đồng thuận (Consent)</li>
-              <li>Quyền riêng tư & Mật khẩu</li>
-              <li>Không gian mạng an toàn</li>
-            </ul>
+          <div class="pillar-row-enhanced">
+            <div class="pillar-left-meta">
+              <div class="pillar-big-num">01</div>
+              <div class="pillar-sub-badge">Nhận thức là bước đầu của an toàn</div>
+            </div>
+
+            <!-- KHUNG ẢNH CẠNH SỐ 01 (Bạn có thể đổi file ảnh tại assets/images/anh4.jpg) -->
+            <div class="pillar-thumb-wrap">
+              <img src="assets/images/banner4.webp" alt="Trục 01 - Hiểu">
+            </div>
+
+            <div class="pillar-mid-content">
+              <div class="pillar-title-wrap">
+                <span class="pillar-icon-badge">👤</span>
+                <h3 class="pillar-main-title">HIỂU</h3>
+                <span class="pillar-sub-desc">Hiểu đúng để bảo vệ bản thân</span>
+              </div>
+              <div class="pillar-pill-grid">
+                <span class="pillar-pill">🛡️ Ranh giới cá nhân</span>
+                <span class="pillar-pill">💖 Sự đồng thuận (Consent)</span>
+                <span class="pillar-pill">🔒 Quyền riêng tư & Mật khẩu</span>
+                <span class="pillar-pill">🌐 Không gian mạng an toàn</span>
+              </div>
+            </div>
+
+            <div class="pillar-right-action">
+              <p class="pillar-summary-text">
+                Trang bị kiến thức nền tảng để bạn hiểu rõ bản thân, quyền của mình và những nguy cơ xung quanh.
+              </p>
+              <a href="knowledge.html#section-01" class="btn-pillar-explore">
+                Khám phá →
+              </a>
+            </div>
           </div>
 
           <!-- 02 NHẬN DIỆN -->
-          <div class="pillar-row">
-            <div class="pillar-number">02</div>
-            <div class="pillar-title">NHẬN DIỆN</div>
-            <ul class="pillar-items">
-              <li>Áp lực bạn bè (Peer pressure)</li>
-              <li>Thao túng cảm xúc (Guilt-trip)</li>
-              <li>Đe dọa & Tống tiền bí mật</li>
-              <li>Hành vi xâm phạm ranh giới</li>
-            </ul>
+          <div class="pillar-row-enhanced">
+            <div class="pillar-left-meta">
+              <div class="pillar-big-num">02</div>
+              <div class="pillar-sub-badge">Nhận diện để chủ động phòng tránh</div>
+            </div>
+
+            <!-- KHUNG ẢNH CẠNH SỐ 02 (Bạn có thể đổi file ảnh tại assets/images/anh5.jpg) -->
+            <div class="pillar-thumb-wrap">
+              <img src="assets/images/banner5.png" alt="Trục 02 - Nhận diện">
+            </div>
+
+            <div class="pillar-mid-content">
+              <div class="pillar-title-wrap">
+                <span class="pillar-icon-badge">🔍</span>
+                <h3 class="pillar-main-title">NHẬN DIỆN</h3>
+                <span class="pillar-sub-desc">Nhận ra dấu hiệu để bảo vệ mình</span>
+              </div>
+              <div class="pillar-pill-grid">
+                <span class="pillar-pill">👥 Áp lực bạn bè (Peer pressure)</span>
+                <span class="pillar-pill">🎭 Thao túng cảm xúc (Guilt-trip)</span>
+                <span class="pillar-pill">⚠️ Đe dọa & Tống tiền bí mật</span>
+                <span class="pillar-pill">✋ Hành vi xâm phạm ranh giới</span>
+              </div>
+            </div>
+
+            <div class="pillar-right-action">
+              <p class="pillar-summary-text">
+                Biết cách nhận diện những tình huống có nguy cơ, hiểu rõ dấu hiệu và tác động để không bị cuốn vào các
+                rủi ro.
+              </p>
+              <a href="knowledge.html#section-04" class="btn-pillar-explore">
+                Khám phá →
+              </a>
+            </div>
           </div>
 
           <!-- 03 XỬ LÝ -->
-          <div class="pillar-row">
-            <div class="pillar-number">03</div>
-            <div class="pillar-title">XỬ LÝ</div>
-            <ul class="pillar-items">
-              <li>Nói rõ ràng và kiên quyết</li>
-              <li>Rời khỏi tình huống mất an toàn</li>
-              <li>Tìm kiếm sự hỗ trợ từ người lớn</li>
-              <li>Lưu bằng chứng khi cần thiết</li>
-            </ul>
+          <div class="pillar-row-enhanced">
+            <div class="pillar-left-meta">
+              <div class="pillar-big-num">03</div>
+              <div class="pillar-sub-badge">Hành động vì một tương lai an toàn hơn</div>
+            </div>
+
+            <!-- KHUNG ẢNH CẠNH SỐ 03 (Bạn có thể đổi file ảnh tại assets/images/anh6.jpg) -->
+            <div class="pillar-thumb-wrap">
+              <img src="assets/images/banner6.jpg" alt="Trục 03 - Xử lý">
+            </div>
+
+            <div class="pillar-mid-content">
+              <div class="pillar-title-wrap">
+                <span class="pillar-icon-badge">⚙️</span>
+                <h3 class="pillar-main-title">XỬ LÝ</h3>
+                <span class="pillar-sub-desc">Trang bị kỹ năng để ứng phó hiệu quả</span>
+              </div>
+              <div class="pillar-pill-grid">
+                <span class="pillar-pill">💬 Nói rõ ràng và kiên quyết</span>
+                <span class="pillar-pill">🏃 Rời khỏi tình huống mất an toàn</span>
+                <span class="pillar-pill">🤝 Tìm kiếm sự hỗ trợ từ người lớn</span>
+                <span class="pillar-pill">📋 Lưu bằng chứng khi cần thiết</span>
+              </div>
+            </div>
+
+            <div class="pillar-right-action">
+              <p class="pillar-summary-text">
+                Thực hành cách xử lý an toàn, tỉnh táo và biết tìm kiếm sự hỗ trợ khi gặp tình huống khó khăn.
+              </p>
+              <a href="knowledge.html#section-07" class="btn-pillar-explore">
+                Khám phá →
+              </a>
+            </div>
           </div>
+        </div>
+
+        <!-- DÒNG NHẮC NHỞ ẤM ÁP PHÍA DƯỚI -->
+        <div class="pillars-bottom-banner">
+          <span>🎯 Cùng hướng tới một môi trường học đường an toàn, tôn trọng và tích cực hơn.</span>
+          <span style="font-style: italic;">“Bạn không đơn độc. Luôn có người sẵn sàng lắng nghe.” ♡</span>
         </div>
       </div>
     </section>
@@ -222,7 +338,8 @@
     <!-- SECTION: TÌNH HUỐNG THỰC TẾ PREVIEW -->
     <section class="section">
       <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-xl);">
+        <div
+          style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-xl);">
           <div>
             <span class="eyebrow">RÈN LUYỆN PHẢN XẠ</span>
             <h2>Tình huống thực tế học đường</h2>
@@ -240,13 +357,15 @@
           <div class="scenario-preview-card">
             <div>
               <div class="meta">TÌNH HUỐNG 01 · RIÊNG TƯ THIẾT BỊ</div>
-              <h4>“Bạn tự ý lấy điện thoại của mình”</h4>
+              <h4>"Bạn tự ý lấy điện thoại của mình"</h4>
               <p>
-                Trong giờ ra chơi, một người bạn tự ý cầm điện thoại của bạn mở tin nhắn đọc và nói: “Bạn bè với nhau có gì đâu”.
+                Trong giờ ra chơi, A để điện thoại trên bàn học. Một người bạn cùng bàn cầm điện thoại của A lên và định
+                mở ứng dụng tin nhắn riêng tư để xem. A lên tiếng: "Đừng xem điện thoại của mình nhé." Người bạn cười
+                xòa trả lời: "Gớm, bạn bè thân với nhau thì có gì phải giấu giếm đâu mà sợ!"
               </p>
             </div>
             <div>
-              <div class="scenario-skill-tag">Kỹ năng: Giao tiếp ranh giới</div>
+              <div class="scenario-skill-tag">Kỹ năng: Bảo vệ quyền riêng tư</div>
               <div>
                 <a href="scenarios.html" class="btn btn-ghost" style="padding-left: 0;">
                   Xem tình huống →
@@ -259,13 +378,16 @@
           <div class="scenario-preview-card">
             <div>
               <div class="meta">TÌNH HUỐNG 02 · KHÔNG GIAN MẠNG</div>
-              <h4>“Bị ép chụp ảnh & đăng story”</h4>
+              <h4>"Bị ép chụp ảnh và đăng lên mạng"</h4>
               <p>
-                Cả nhóm tụ tập chụp hình hớ hênh và đòi đăng story tag tên bạn dù bạn đã từ chối và xin đừng đăng.
+                Trong một buổi sinh nhật ngoài quán nước, cả nhóm bạn chụp nhiều kiểu ảnh vui đùa, trong đó có một số
+                khoảnh khắc bạn bị hớ hênh hoặc trông buồn cười. Bạn B cầm máy tuyên bố: "Ảnh này độc này, tí tớ up lên
+                story Facebook rồi tag cả trường vào nhé!". Bạn đã nói: "Đừng up ảnh đó, tớ thấy không thoải mái đâu."
+                Nhưng B đáp: "Đùa tí cho vui, mọi người ai cũng thấy buồn cười mà!".
               </p>
             </div>
             <div>
-              <div class="scenario-skill-tag">Kỹ năng: Sự đồng thuận hình ảnh</div>
+              <div class="scenario-skill-tag">Kỹ năng: Sự đồng thuận kỹ thuật số</div>
               <div>
                 <a href="scenarios.html" class="btn btn-ghost" style="padding-left: 0;">
                   Xem tình huống →
@@ -274,6 +396,25 @@
             </div>
           </div>
 
+          <!-- Item 3 -->
+          <div class="scenario-preview-card">
+            <div>
+              <div class="meta">TÌNH HUỐNG 03 · ÉP BUỘC TRỰC TUYẾN</div>
+              <h4>"Bị yêu cầu gửi ảnh riêng tư"</h4>
+              <p>
+                Một người quen qua mạng thường xuyên nhắn tin và yêu cầu C gửi những bức ảnh riêng tư. C không muốn
+                nhưng người đó nói: "Nếu không gửi thì chứng tỏ bạn không tin mình."
+              </p>
+            </div>
+            <div>
+              <div class="scenario-skill-tag">Kỹ năng: Bảo vệ thông tin cá nhân</div>
+              <div>
+                <a href="scenarios.html" class="btn btn-ghost" style="padding-left: 0;">
+                  Xem tình huống →
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -289,9 +430,10 @@
                 Bạn không cần phải tự xử lý mọi thứ.
               </h2>
               <p style="color: var(--color-text); font-size: 1.02rem; line-height: 1.65; margin-bottom: 1rem;">
-                Nếu một tình huống khiến bạn cảm thấy không an toàn, bất an kéo dài hoặc vượt quá khả năng tự giải quyết, hãy nhớ rằng tìm kiếm sự giúp đỡ là hành động dũng cảm, không phải là sự yếu đuối.
+                Nếu một tình huống khiến bạn cảm thấy không an toàn, bất an kéo dài hoặc vượt quá khả năng tự giải
+                quyết, hãy nhớ rằng tìm kiếm sự giúp đỡ là hành động dũng cảm, không phải là sự yếu đuối.
               </p>
-              
+
               <div class="support-flow-steps">
                 <span class="flow-step-item">Nhận biết</span>
                 <span class="flow-arrow">→</span>
@@ -313,7 +455,8 @@
 
             <!-- Support channels -->
             <div>
-              <div style="font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.75rem;">
+              <div
+                style="font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.75rem;">
                 Các nguồn trợ giúp đáng tin cậy:
               </div>
               <ul class="support-channels-list">
@@ -321,28 +464,32 @@
                   <span class="support-dot"></span>
                   <div>
                     <strong>Bố mẹ / Người chăm sóc</strong>
-                    <div style="font-size: 0.82rem; color: var(--color-muted);">Nơi che chở và bảo hộ pháp lý đầu tiên</div>
+                    <div style="font-size: 0.82rem; color: var(--color-muted);">Nơi che chở và bảo hộ pháp lý đầu tiên
+                    </div>
                   </div>
                 </li>
                 <li>
                   <span class="support-dot"></span>
                   <div>
                     <strong>Giáo viên chủ nhiệm & Thầy cô tin cậy</strong>
-                    <div style="font-size: 0.82rem; color: var(--color-muted);">Hỗ trợ can thiệp kịp thời trong môi trường trường học</div>
+                    <div style="font-size: 0.82rem; color: var(--color-muted);">Hỗ trợ can thiệp kịp thời trong môi
+                      trường trường học</div>
                   </div>
                 </li>
                 <li>
                   <span class="support-dot"></span>
                   <div>
                     <strong>Phòng Tư vấn Tâm lý Học đường</strong>
-                    <div style="font-size: 0.82rem; color: var(--color-muted);">Không gian lắng nghe bảo mật, không phán xét</div>
+                    <div style="font-size: 0.82rem; color: var(--color-muted);">Không gian lắng nghe bảo mật, không phán
+                      xét</div>
                   </div>
                 </li>
                 <li>
                   <span class="support-dot"></span>
                   <div>
                     <strong>Tổng đài Quốc gia Bảo vệ Trẻ em: 111</strong>
-                    <div style="font-size: 0.82rem; color: var(--color-muted);">Đường dây nóng miễn phí 24/7 bảo vệ học sinh & trẻ vị thành niên</div>
+                    <div style="font-size: 0.82rem; color: var(--color-muted);">Đường dây nóng miễn phí 24/7 bảo vệ học
+                      sinh & trẻ vị thành niên</div>
                   </div>
                 </li>
               </ul>
@@ -364,7 +511,7 @@
           </div>
         </div>
         <ul class="footer-links">
-          <li><a href="knowledge.html">Kiến thức</a></li>
+          <li><a href="knowledge.html">Sổ tay Safeteen</a></li>
           <li><a href="scenarios.html">Tình huống</a></li>
           <li><a href="quiz.html">Quiz</a></li>
           <li><a href="#ho-tro">Cần hỗ trợ</a></li>
@@ -373,14 +520,15 @@
       <!-- VISITOR COUNTER WIDGET -->
       <div class="footer-visitor-counter">
         <div class="counter-badge" id="btnOpenAnalytics" title="Bấm để xem số liệu báo cáo dự án">
-          <span class="counter-item"><span class="counter-icon">👁️</span> LƯỢT TRUY CẬP: <strong id="visitorCountDisplay">1,482</strong></span>
+          <span class="counter-item"><span class="counter-icon">👁️</span> LƯỢT TRUY CẬP: <strong
+              id="visitorCountDisplay">1,482</strong></span>
           <span class="counter-divider">|</span>
           <span class="counter-report-btn">📊 Báo cáo đề tài</span>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>Nội dung được xây dựng nhằm mục đích giáo dục và nâng cao nhận thức cho học sinh THPT.</span>
+        <span>Nội dung được xây dựng nhằm mục đích giáo dục và nâng cao nhận thức cho học sinh.</span>
         <span>SafeTeen Education · Không gian học tập an toàn</span>
       </div>
     </div>
@@ -390,4 +538,5 @@
   <script src="js/counter.js"></script>
   <script src="js/chatbot.js"></script>
 </body>
+
 </html>

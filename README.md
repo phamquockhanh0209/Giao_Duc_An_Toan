@@ -20,7 +20,7 @@ Nền tảng giáo dục tương tác về ranh giới cá nhân, quyền riêng
 SafeTeen/
 ├── index.html            # Trang chủ: Tổng quan, 3 trục nội dung, 5 bước xử lý, xem trước tình huống
 ├── pre-test.html         # Trang đánh giá đầu vào (bắt buộc trước khi tiếp cận nội dung chính)
-├── knowledge.html        # Sổ tay kiến thức: 9 chuyên đề số hóa với mục lục sticky và góc hỏi đáp ẩn danh
+├── knowledge.html        # Sổ tay kiến thức: 11 chuyên đề số hóa với mục lục sticky và góc hỏi đáp ẩn danh
 ├── scenarios.html        # Tình huống thực tế: 5 bài tập tương tác có giải thích "Vì sao?" và thẻ kỹ năng
 ├── quiz.html             # Bài Quiz luyện tập & đánh giá: 5 mức độ tư duy, so sánh Hành trình Trước/Sau
 ├── css/
@@ -48,7 +48,7 @@ SafeTeen/
    - Xem trước các tình huống thực tế và các kênh hỗ trợ khẩn cấp.
 
 3. **Sổ tay kiến thức (`knowledge.html`)**:
-   - 9 chủ đề chuyên sâu: Ranh giới cá nhân, Quyền nói "không", Sự đồng thuận (5 nguyên tắc), Nhận diện hành vi xâm phạm, Áp lực & thao túng, Nhận biết nguy cơ, Kỹ năng phòng tránh 5 bước, Xử lý sau sự việc, Bảng đối chiếu Tôn trọng vs Cảnh giác.
+   - 11 chủ đề chuyên sâu: Ranh giới cá nhân, Quyền nói "không", Sự đồng thuận (5 nguyên tắc), Nhận diện hành vi xâm phạm, Áp lực & thao túng, Nhận biết nguy cơ, Kỹ năng phòng tránh 5 bước, Xử lý sau sự việc, Bảng đối chiếu Tôn trọng vs Cảnh giác, Quyền riêng tư & bảo vệ không gian riêng, An toàn trên mạng & nhận diện nguy cơ giao tiếp trực tuyến.
    - Góc hỏi đáp ẩn danh hỗ trợ học sinh tự giải đáp các băn khoăn thầm kín.
 
 4. **Tình huống tương tác (`scenarios.html`)**:
