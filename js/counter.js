@@ -62,20 +62,14 @@ const SafeTeenAnalytics = (() => {
   }
 
   function isAdmin() {
-    // 1. Kiểm tra URL có chứa ?admin hoặc #admin
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('admin') || window.location.hash.includes('admin')) {
-      localStorage.setItem(STORAGE_KEYS.IS_ADMIN, 'true');
-      return true;
-    }
-    return localStorage.getItem(STORAGE_KEYS.IS_ADMIN) === 'true';
+    return sessionStorage.getItem(STORAGE_KEYS.IS_ADMIN) === 'true';
   }
 
   function setAdmin(status) {
     if (status) {
-      localStorage.setItem(STORAGE_KEYS.IS_ADMIN, 'true');
+      sessionStorage.setItem(STORAGE_KEYS.IS_ADMIN, 'true');
     } else {
-      localStorage.removeItem(STORAGE_KEYS.IS_ADMIN);
+      sessionStorage.removeItem(STORAGE_KEYS.IS_ADMIN);
     }
     updateAdminVisibility();
   }
@@ -94,14 +88,14 @@ const SafeTeenAnalytics = (() => {
   function updateAdminVisibility() {
     const isAdm = isAdmin();
 
-    // Bộ đếm lượt truy cập LUÔN được hiển thị
+    // Footer luôn hiển thị,
+    // nhưng số lượt truy cập chỉ hiện sau khi xác thực PIN.
     const footerCounter = document.querySelector('.footer-visitor-counter');
 
     if (footerCounter) {
       footerCounter.style.display = 'flex';
     }
 
-    // Chỉ thay đổi nội dung gợi ý khi đã đăng nhập admin
     const reportButtons = document.querySelectorAll(
       '#btnOpenAnalytics, .header-analytics-pill'
     );
@@ -110,15 +104,18 @@ const SafeTeenAnalytics = (() => {
       if (isAdm) {
         el.setAttribute(
           'title',
-          'Chế độ Quản trị viên: Bấm để xem báo cáo'
+          'Đã xác thực quản trị viên · Bấm để xem báo cáo'
         );
       } else {
         el.setAttribute(
           'title',
-          'Bấm để xem báo cáo đề tài'
+          'Nhập mã PIN để xem số liệu'
         );
       }
     });
+
+    // Quan trọng: cập nhật lại X / số
+    updateCounterDisplays();
   }
 
   // Tự động đồng bộ số lượt xem thực tế đa thiết bị
@@ -273,20 +270,27 @@ const SafeTeenAnalytics = (() => {
 
   function updateCounterDisplays() {
     const stats = getStats();
+    const isAdm = isAdmin();
+
     const formatted = stats.visitors.toLocaleString('vi-VN');
 
+    // Footer
     const pvEl = document.getElementById('visitorCountDisplay');
+
     if (pvEl) {
-      pvEl.textContent = formatted;
+      pvEl.textContent = isAdm ? formatted : 'X';
     }
 
+    // Header nếu có
     const headerEl = document.getElementById('headerVisitorCountDisplay');
+
     if (headerEl) {
-      headerEl.textContent = formatted;
+      headerEl.textContent = isAdm ? formatted : 'X';
     }
 
+    // Các bộ đếm khác nếu có
     document.querySelectorAll('.visitor-count-val').forEach(el => {
-      el.textContent = formatted;
+      el.textContent = isAdm ? formatted : 'X';
     });
   }
 
