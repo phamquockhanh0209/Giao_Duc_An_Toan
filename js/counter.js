@@ -81,7 +81,7 @@ const SafeTeenAnalytics = (() => {
   }
 
   function promptAdminAccess() {
-    const entered = prompt("🔐 XÁC THỰC QUẢN TRỊ VIÊN SAFETEEN:\nNhập mã PIN để xem số liệu lượt truy cập:\n(Mã PIN mặc định: 111)");
+    const entered = prompt("🔐 XÁC THỰC QUẢN TRỊ VIÊN SAFETEEN:\nNhập mã PIN để xem số liệu lượt truy cập:\n");
     if (entered === ADMIN_PIN) {
       setAdmin(true);
       alert("✅ Xác thực thành công! Báo cáo lượt xem dành riêng cho Quản trị viên đã mở.");
@@ -122,9 +122,9 @@ const SafeTeenAnalytics = (() => {
   }
 
   // Tự động đồng bộ số lượt xem thực tế đa thiết bị
-  function syncGlobalCounter() {
+  async function syncGlobalCounter() {
     try {
-      fetch('/api/visit', {
+      const response = await fetch('/api/visit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -132,23 +132,31 @@ const SafeTeenAnalytics = (() => {
         body: JSON.stringify({
           page: window.location.pathname
         })
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data && typeof data.totalViews === 'number') {
-            localStorage.setItem(
-              STORAGE_KEYS.GLOBAL_COUNT,
-              data.totalViews.toString()
-            );
+      });
 
-            updateCounterDisplays();
-          }
-        })
-        .catch(error => {
-          console.error('Visit tracking error:', error);
-        });
-    } catch (e) {
-      console.error('Visit tracking error:', e);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      console.log('Supabase visitor data:', data);
+
+      if (
+        data &&
+        data.success &&
+        typeof data.totalViews === 'number'
+      ) {
+        localStorage.setItem(
+          STORAGE_KEYS.GLOBAL_COUNT,
+          data.totalViews.toString()
+        );
+
+        updateCounterDisplays();
+      }
+
+    } catch (error) {
+      console.error('Visit tracking error:', error);
     }
   }
 
@@ -178,7 +186,6 @@ const SafeTeenAnalytics = (() => {
   }
 
   function init() {
-    recordVisit();
     syncGlobalCounter();
     updateCounterDisplays();
     updateAdminVisibility();
@@ -188,24 +195,45 @@ const SafeTeenAnalytics = (() => {
 
   function getStats() {
     const baseline = getBaseline();
-    const storedVisitors = parseInt(localStorage.getItem(STORAGE_KEYS.UNIQUE_VISITORS) || '0', 10);
-    const storedChat = parseInt(localStorage.getItem(STORAGE_KEYS.CHAT_COUNT) || '0', 10);
 
-    // Dynamic additions from user actions in this browser
-    const userPretestDone = localStorage.getItem('preTestCompleted') === 'true' ? 1 : 0;
-    const userQuizDone = localStorage.getItem('quizCompleted') === 'true' ? 1 : 0;
-    const userScenarioProgress = parseInt(localStorage.getItem('scenarioProgress') || '0', 10);
+    const globalVisitors = parseInt(
+      localStorage.getItem(STORAGE_KEYS.GLOBAL_COUNT) || '0',
+      10
+    );
 
-    const baseVisitors = (baseline.visitors !== undefined) ? baseline.visitors : (baseline.pageviews || 1482);
-    const totalVisitors = baseVisitors + storedVisitors;
+    const storedChat = parseInt(
+      localStorage.getItem(STORAGE_KEYS.CHAT_COUNT) || '0',
+      10
+    );
+
+    const userPretestDone =
+      localStorage.getItem('preTestCompleted') === 'true' ? 1 : 0;
+
+    const userQuizDone =
+      localStorage.getItem('quizCompleted') === 'true' ? 1 : 0;
+
+    const userScenarioProgress =
+      parseInt(
+        localStorage.getItem('scenarioProgress') || '0',
+        10
+      );
 
     return {
-      visitors: totalVisitors,
-      pageviews: totalVisitors,
-      pretestDone: baseline.pretestCompleted + userPretestDone,
-      scenariosDone: baseline.scenariosExplored + (userScenarioProgress > 0 ? 1 : 0),
-      quizDone: baseline.quizCompleted + userQuizDone,
-      chatCount: baseline.chatInteractions + storedChat
+      visitors: globalVisitors,
+      pageviews: globalVisitors,
+
+      pretestDone:
+        baseline.pretestCompleted + userPretestDone,
+
+      scenariosDone:
+        baseline.scenariosExplored +
+        (userScenarioProgress > 0 ? 1 : 0),
+
+      quizDone:
+        baseline.quizCompleted + userQuizDone,
+
+      chatCount:
+        baseline.chatInteractions + storedChat
     };
   }
 
