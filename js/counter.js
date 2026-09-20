@@ -8,8 +8,13 @@ const SafeTeenAnalytics = (() => {
     UNIQUE_VISITORS: 'safeteen_analytics_visitors',
     CHAT_COUNT: 'safeteen_analytics_chat_count',
     SESSION_ID: 'safeteen_session_active',
-    CUSTOM_BASELINE: 'safeteen_analytics_custom_baseline'
+    CUSTOM_BASELINE: 'safeteen_analytics_custom_baseline',
+    IS_ADMIN: 'safeteen_is_admin',
+    GLOBAL_COUNT: 'safeteen_global_visitors'
   };
+
+  const ADMIN_PIN = "111"; // Mã PIN bảo mật cho khách hàng (chủ website)
+  const GLOBAL_API_URL = "https://api.counterapi.dev/v1/safeteen_project_hoangyen/visits";
 
   // Mặc định baseline (khớp với số liệu báo cáo dự án)
   const DEFAULT_BASELINE = {
@@ -56,10 +61,96 @@ const SafeTeenAnalytics = (() => {
     updateCounterDisplays();
   }
 
+  function isAdmin() {
+    // 1. Kiểm tra URL có chứa ?admin hoặc #admin
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('admin') || window.location.hash.includes('admin')) {
+      localStorage.setItem(STORAGE_KEYS.IS_ADMIN, 'true');
+      return true;
+    }
+    return localStorage.getItem(STORAGE_KEYS.IS_ADMIN) === 'true';
+  }
+
+  function setAdmin(status) {
+    if (status) {
+      localStorage.setItem(STORAGE_KEYS.IS_ADMIN, 'true');
+    } else {
+      localStorage.removeItem(STORAGE_KEYS.IS_ADMIN);
+    }
+    updateAdminVisibility();
+  }
+
+  function promptAdminAccess() {
+    const entered = prompt("🔐 XÁC THỰC QUẢN TRỊ VIÊN SAFETEEN:\nNhập mã PIN để xem số liệu lượt truy cập:\n(Mã PIN mặc định: 111)");
+    if (entered === ADMIN_PIN) {
+      setAdmin(true);
+      alert("✅ Xác thực thành công! Báo cáo lượt xem dành riêng cho Quản trị viên đã mở.");
+      openReportModal();
+    } else if (entered !== null) {
+      alert("❌ Mã PIN không chính xác!");
+    }
+  }
+
+  function updateAdminVisibility() {
+    const isAdm = isAdmin();
+    const counters = document.querySelectorAll('.footer-visitor-counter, #btnOpenAnalytics, .header-analytics-pill');
+    counters.forEach(el => {
+      if (isAdm) {
+        el.style.display = 'block';
+        el.setAttribute('title', 'Chế độ Quản trị viên: Bấm để xem báo cáo');
+      } else {
+        el.style.display = 'none';
+      }
+    });
+  }
+
+  // Tự động đồng bộ số lượt xem thực tế đa thiết bị
+  function syncGlobalCounter() {
+    try {
+      fetch(`${GLOBAL_API_URL}/up`, { method: 'GET', mode: 'cors' })
+        .then(res => res.json())
+        .then(data => {
+          if (data && typeof data.count === 'number') {
+            localStorage.setItem(STORAGE_KEYS.GLOBAL_COUNT, data.count.toString());
+            updateCounterDisplays();
+          }
+        })
+        .catch(() => {});
+    } catch (e) {}
+  }
+
+  function setupSecretTriggers() {
+    // 1. Bấm 3 lần liên tiếp vào logo hoặc chữ "SafeTeen" ở Footer
+    let clickCount = 0;
+    let clickTimer = null;
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.footer-brand, .site-brand')) {
+        clickCount++;
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => { clickCount = 0; }, 1200);
+        if (clickCount >= 3) {
+          clickCount = 0;
+          promptAdminAccess();
+        }
+      }
+    });
+
+    // 2. Phím tắt bí mật: Ctrl + Shift + A
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        promptAdminAccess();
+      }
+    });
+  }
+
   function init() {
     recordVisit();
+    syncGlobalCounter();
     updateCounterDisplays();
+    updateAdminVisibility();
     setupReportModal();
+    setupSecretTriggers();
   }
 
   function getStats() {
