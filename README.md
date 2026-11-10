@@ -27,10 +27,13 @@ SafeTeen/
 │   └── style.css         # Toàn bộ thiết kế responsive, biến màu sắc, typography và components
 ├── js/
 │   ├── main.js           # Kiểm soát luồng điều hướng (gatekeeper), modal "Kết quả của tôi", menu mobile
+│   ├── chatbot.js        # Giao diện chatbot SafeTeen AI
 │   ├── pretest.js        # Động cơ 20 câu hỏi đánh giá nhận thức ban đầu, lưu trữ localStorage
 │   ├── knowledge.js      # Scrollspy theo dõi mục lục, gửi câu hỏi ẩn danh và phản hồi mẫu
 │   ├── scenarios.js      # Bộ 5 tình huống học đường với phản hồi chuyên sâu và tích lũy kỹ năng
 │   └── quiz.js           # 10 câu hỏi theo 5 mức độ nhận thức, thang điểm 50, biểu đồ Trước/Sau thuần CSS
+├── api/
+│   └── gemini.js         # API serverless Vercel, giữ API key ở phía server
 └── README.md             # Hướng dẫn sử dụng và giới thiệu dự án
 ```
 
@@ -64,8 +67,43 @@ SafeTeen/
 
 ## 4. Cách chạy trang web
 
-Trang web được lập trình hoàn toàn bằng HTML5, CSS3 và Vanilla JavaScript (không phụ thuộc bất kỳ thư viện ngoài hay backend nào):
+Giao diện dùng HTML5, CSS3 và Vanilla JavaScript. Các tính năng học tập cơ bản có thể chạy tĩnh; riêng chatbot AI cần API serverless trên Vercel:
 - **Cách 1:** Mở trực tiếp file `pre-test.html` hoặc `index.html` bằng bất kỳ trình duyệt web nào (Chrome, Edge, Firefox, Safari).
-- **Cách 2:** Mở thư mục bằng VS Code và chọn **Open with Live Server**.
+- **Cách 2:** Mở thư mục bằng VS Code và chọn **Open with Live Server**. Chatbot AI cần được triển khai trên Vercel (hoặc chạy bằng `vercel dev`) để gọi được API; Live Server và GitHub Pages không chạy thư mục `api/`.
 
 Dữ liệu tiến độ học tập được lưu trữ riêng tư trên trình duyệt (`localStorage`) của người học. Người dùng có thể nhấn vào nút **"Kết quả của tôi"** ở góc trên cùng bên phải để xem bảng tổng hợp hoặc chọn **"Làm lại từ đầu (Xóa dữ liệu)"** bất cứ khi nào muốn kiểm tra lại.
+
+---
+
+## 5. Cấu hình SafeTeen AI (Google Gemini)
+
+Chatbot gọi Gemini thông qua API serverless tại `api/gemini.js`. Không đặt API key trong HTML/JavaScript phía trình duyệt và không commit key lên GitHub.
+
+### Tạo API key trong Google AI Studio
+
+1. Đăng nhập Google và mở [Google AI Studio - API keys](https://aistudio.google.com/app/apikey).
+2. Chọn **Create API key**, rồi tạo key cho một Google Cloud project (hoặc chọn project được yêu cầu).
+3. Sao chép key và lưu ở nơi riêng tư. Không gửi key trong chat, ảnh chụp màn hình hoặc mã nguồn.
+4. Kiểm tra hạn mức, điều khoản và khả năng sử dụng Gemini API trong tài khoản/khu vực của bạn; giới hạn miễn phí và model khả dụng có thể thay đổi.
+
+### Thêm key vào Vercel
+
+1. Đưa repository GitHub này lên Vercel và chọn đúng project.
+2. Vào **Project Settings → Environment Variables**.
+3. Tạo biến `GEMINI_API_KEY`, dán key làm giá trị, chọn môi trường cần dùng rồi lưu.
+4. Vào **Deployments** và redeploy để deployment nhận biến mới.
+5. Mở website trên domain Vercel, nhấn **Hỏi SafeTeen AI** và thử gửi câu hỏi. API không chạy khi chỉ mở HTML trực tiếp hoặc dùng GitHub Pages/Live Server; khi phát triển local, dùng Vercel CLI (`vercel dev`) để chạy cả trang và API.
+
+Nếu key từng được đưa lên GitHub, hãy thu hồi/xóa key đó trong AI Studio và tạo key mới. Đừng chỉ xóa key khỏi file hoặc lịch sử commit.
+
+## 6. Đẩy thay đổi lên GitHub
+
+Vì repository đã được kết nối với `origin`, sau khi thay đổi code bạn có thể chạy trong terminal tại thư mục project:
+
+```bash
+git add README.md api/gemini.js css/style.css js/chatbot.js scenarios.html
+git commit -m "Add SafeTeen Gemini chatbot"
+git push origin main
+```
+
+Sau khi push, Vercel sẽ tự deploy nếu đã bật Git deployment. Chỉ đẩy code; không thêm API key vào commit.
