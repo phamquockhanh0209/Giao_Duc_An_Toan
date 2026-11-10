@@ -10,7 +10,9 @@ const SafeTeenAnalytics = (() => {
     SESSION_ID: 'safeteen_session_active',
     CUSTOM_BASELINE: 'safeteen_analytics_custom_baseline',
     IS_ADMIN: 'safeteen_is_admin',
-    GLOBAL_COUNT: 'safeteen_global_visitors'
+    GLOBAL_COUNT: 'safeteen_global_visitors',
+    VISITOR_COUNT_AT_BASELINE: 'safeteen_visitor_count_at_baseline',
+    DEVICE_COUNTED: 'safeteen_analytics_device_counted'
   };
 
   const ADMIN_PIN = "111"; // Mã PIN bảo mật cho khách hàng (chủ website)
@@ -19,17 +21,27 @@ const SafeTeenAnalytics = (() => {
   // Mặc định baseline (khớp với số liệu báo cáo dự án)
   const DEFAULT_BASELINE = {
     visitors: 0,
+    studentsReached: 0,
     pretestCompleted: 0,
     scenariosExplored: 0,
     quizCompleted: 0,
     chatInteractions: 0
   };
+  let globalCounterSync = Promise.resolve();
 
   function getBaseline() {
     const saved = localStorage.getItem(STORAGE_KEYS.CUSTOM_BASELINE);
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const customBaseline = JSON.parse(saved);
+        const baseline = {
+          ...DEFAULT_BASELINE,
+          ...customBaseline
+        };
+        if (!Object.prototype.hasOwnProperty.call(customBaseline, 'studentsReached')) {
+          baseline.studentsReached = Math.round(baseline.visitors * 0.85);
+        }
+        return baseline;
       } catch (e) {
         return DEFAULT_BASELINE;
       }
@@ -46,6 +58,7 @@ const SafeTeenAnalytics = (() => {
     // Đặt lại toàn bộ số liệu thống kê về 0
     localStorage.setItem(STORAGE_KEYS.CUSTOM_BASELINE, JSON.stringify({
       visitors: 0,
+      studentsReached: 0,
       pretestCompleted: 0,
       scenariosExplored: 0,
       quizCompleted: 0,
@@ -54,8 +67,13 @@ const SafeTeenAnalytics = (() => {
     // Đếm lại từ 0 (không đặt 1 vì sẽ luôn hiển thị 1)
     localStorage.setItem(STORAGE_KEYS.UNIQUE_VISITORS, '0');
     localStorage.setItem(STORAGE_KEYS.CHAT_COUNT, '0');
+    localStorage.setItem(
+      STORAGE_KEYS.VISITOR_COUNT_AT_BASELINE,
+      localStorage.getItem(STORAGE_KEYS.GLOBAL_COUNT) || '0'
+    );
     // Xóa cờ đã ghi nhận thiết bị để lần truy cập tiếp theo được tính lại
     localStorage.removeItem('has_visited_device');
+    localStorage.removeItem(STORAGE_KEYS.DEVICE_COUNTED);
     // Không cần SESSION_ID nữa vì chúng ta không dùng sessionStorage để đếm
     sessionStorage.removeItem(STORAGE_KEYS.SESSION_ID);
     updateCounterDisplays();
@@ -118,8 +136,15 @@ const SafeTeenAnalytics = (() => {
     updateCounterDisplays();
   }
 
-  // Tự động đồng bộ số lượt xem thực tế đa thiết bị
+  // Đồng bộ số truy cập đa thiết bị; mỗi hồ sơ trình duyệt chỉ được tính một lần.
   async function syncGlobalCounter() {
+    if (localStorage.getItem(STORAGE_KEYS.DEVICE_COUNTED) === 'true') {
+      return;
+    }
+
+    // Chặn các lần tải trang đồng thời trong cùng trình duyệt ghi nhận trùng.
+    localStorage.setItem(STORAGE_KEYS.DEVICE_COUNTED, 'true');
+
     try {
       const response = await fetch('/api/visit', {
         method: 'POST',
@@ -139,20 +164,18 @@ const SafeTeenAnalytics = (() => {
 
       console.log('Supabase visitor data:', data);
 
-      if (
-        data &&
-        data.success &&
-        typeof data.totalViews === 'number'
-      ) {
-        localStorage.setItem(
-          STORAGE_KEYS.GLOBAL_COUNT,
-          data.totalViews.toString()
-        );
-
-        updateCounterDisplays();
+      if (!data || !data.success || typeof data.totalViews !== 'number') {
+        throw new Error(data?.message || 'Invalid visit tracking response');
       }
 
+      localStorage.setItem(
+        STORAGE_KEYS.GLOBAL_COUNT,
+        data.totalViews.toString()
+      );
+
+      updateCounterDisplays();
     } catch (error) {
+      localStorage.removeItem(STORAGE_KEYS.DEVICE_COUNTED);
       console.error('Visit tracking error:', error);
     }
   }
@@ -183,7 +206,16 @@ const SafeTeenAnalytics = (() => {
   }
 
   function init() {
-    syncGlobalCounter();
+    if (
+      localStorage.getItem(STORAGE_KEYS.CUSTOM_BASELINE) &&
+      localStorage.getItem(STORAGE_KEYS.VISITOR_COUNT_AT_BASELINE) === null
+    ) {
+      localStorage.setItem(
+        STORAGE_KEYS.VISITOR_COUNT_AT_BASELINE,
+        localStorage.getItem(STORAGE_KEYS.GLOBAL_COUNT) || '0'
+      );
+    }
+    globalCounterSync = syncGlobalCounter();
     updateCounterDisplays();
     updateAdminVisibility();
     setupReportModal();
@@ -216,8 +248,27 @@ const SafeTeenAnalytics = (() => {
       );
 
     return {
-      visitors: globalVisitors,
+      visitors:
+        baseline.visitors +
+        Math.max(
+          0,
+          globalVisitors -
+            parseInt(
+              localStorage.getItem(STORAGE_KEYS.VISITOR_COUNT_AT_BASELINE) || '0',
+              10
+            )
+        ),
       pageviews: globalVisitors,
+      studentsReached:
+        baseline.studentsReached +
+        Math.max(
+          0,
+          globalVisitors -
+            parseInt(
+              localStorage.getItem(STORAGE_KEYS.VISITOR_COUNT_AT_BASELINE) || '0',
+              10
+            )
+        ),
 
       pretestDone:
         baseline.pretestCompleted + userPretestDone,
@@ -353,8 +404,8 @@ const SafeTeenAnalytics = (() => {
 
           <div class="analytics-kpi-box">
             <span class="kpi-label">Học sinh tiếp cận</span>
-            <strong class="kpi-value">${Math.round(stats.visitors * 0.85).toLocaleString('vi-VN')}</strong>
-            <span class="kpi-note">Học sinh & thầy cô</span>
+            <strong class="kpi-value">${stats.studentsReached.toLocaleString('vi-VN')}</strong>
+            <span class="kpi-note">Số nền + trình duyệt mới</span>
           </div>
 
           <div class="analytics-kpi-box">
@@ -389,26 +440,30 @@ const SafeTeenAnalytics = (() => {
 
         <!-- Custom Data Form Toggle -->
         <div id="analyticsEditFormWrap" style="display: none; background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem;">
-          <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--color-text);">⚙️ Cài đặt số liệu thực tế theo đề tài của bạn:</h4>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--color-text);">⚙️ Cài đặt số liệu nền theo đề tài của bạn:</h4>
           <p style="font-size: 0.8rem; color: var(--color-muted); margin-bottom: 0.75rem;">
-            Bạn có thể nhập số liệu khảo sát thực tế của trường mình để số liệu trong báo cáo khớp 100% với bản in nộp Ban Giám Khảo, hoặc bấm "Đếm thật từ 0".
+            Nhập số liệu nền theo báo cáo; mỗi trình duyệt mới truy cập sẽ cộng thêm 1 vào lượt truy cập và học sinh tiếp cận. Dùng số liệu khảo sát thực tế hoặc ghi rõ số liệu mô phỏng khi báo cáo.
           </p>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem;">
             <div>
               <label style="font-size: 0.76rem; color: var(--color-muted); display: block;">Lượt truy cập vào link:</label>
-              <input type="number" id="inpEditVisitors" value="${stats.visitors}" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.85rem;">
+              <input type="number" id="inpEditVisitors" min="0" step="1" value="${stats.visitors}" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.85rem;">
+            </div>
+            <div>
+              <label style="font-size: 0.76rem; color: var(--color-muted); display: block;">Học sinh tiếp cận:</label>
+              <input type="number" id="inpEditStudentsReached" min="0" step="1" value="${stats.studentsReached}" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.85rem;">
             </div>
             <div>
               <label style="font-size: 0.76rem; color: var(--color-muted); display: block;">Làm Pre-test:</label>
-              <input type="number" id="inpEditPretest" value="${stats.pretestDone}" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.85rem;">
+              <input type="number" id="inpEditPretest" min="0" step="1" value="${stats.pretestDone}" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.85rem;">
             </div>
             <div>
               <label style="font-size: 0.76rem; color: var(--color-muted); display: block;">Làm Quiz:</label>
-              <input type="number" id="inpEditQuiz" value="${stats.quizDone}" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.85rem;">
+              <input type="number" id="inpEditQuiz" min="0" step="1" value="${stats.quizDone}" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.85rem;">
             </div>
             <div>
               <label style="font-size: 0.76rem; color: var(--color-muted); display: block;">Tương tác Boxchat AI:</label>
-              <input type="number" id="inpEditChat" value="${stats.chatCount}" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.85rem;">
+              <input type="number" id="inpEditChat" min="0" step="1" value="${stats.chatCount}" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.85rem;">
             </div>
           </div>
           <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
@@ -424,7 +479,7 @@ const SafeTeenAnalytics = (() => {
         <!-- Action Buttons -->
         <div class="analytics-action-row">
           <button type="button" class="btn btn-secondary" id="btnToggleEditStats" style="margin-right: auto; font-size: 0.82rem;">
-            ⚙️ Chỉnh số liệu thực tế
+            ⚙️ Chỉnh số liệu báo cáo
           </button>
           <button type="button" class="btn btn-secondary" id="btnCopyReport">
             📋 Sao chép tóm tắt số liệu
@@ -451,14 +506,32 @@ const SafeTeenAnalytics = (() => {
     });
 
     // Save custom stats
-    modal.querySelector('#btnSaveCustomStats').addEventListener('click', () => {
-      const newVis = parseInt(modal.querySelector('#inpEditVisitors').value || '0', 10);
-      const newPre = parseInt(modal.querySelector('#inpEditPretest').value || '0', 10);
-      const newQuiz = parseInt(modal.querySelector('#inpEditQuiz').value || '0', 10);
-      const newChat = parseInt(modal.querySelector('#inpEditChat').value || '0', 10);
+    modal.querySelector('#btnSaveCustomStats').addEventListener('click', async () => {
+      const inputs = [
+        modal.querySelector('#inpEditVisitors'),
+        modal.querySelector('#inpEditStudentsReached'),
+        modal.querySelector('#inpEditPretest'),
+        modal.querySelector('#inpEditQuiz'),
+        modal.querySelector('#inpEditChat')
+      ];
+      const values = inputs.map(input =>
+        input.value.trim() === '' ? NaN : Number(input.value)
+      );
+      if (values.some(value => !Number.isSafeInteger(value) || value < 0)) {
+        alert('Vui lòng nhập số nguyên không âm cho tất cả số liệu.');
+        return;
+      }
 
+      const [newVis, newStudentsReached, newPre, newQuiz, newChat] = values;
+
+      await globalCounterSync;
+      localStorage.setItem(
+        STORAGE_KEYS.VISITOR_COUNT_AT_BASELINE,
+        localStorage.getItem(STORAGE_KEYS.GLOBAL_COUNT) || '0'
+      );
       setCustomBaseline({
         visitors: newVis,
+        studentsReached: newStudentsReached,
         pretestCompleted: newPre,
         scenariosExplored: Math.round(newVis * 0.5),
         quizCompleted: newQuiz,
@@ -471,7 +544,7 @@ const SafeTeenAnalytics = (() => {
       closeHandler();
       openReportModal();
       if (typeof SafeTeenApp !== 'undefined' && SafeTeenApp.showNotification) {
-        SafeTeenApp.showNotification('Đã cập nhật số liệu thực tế theo đề tài!');
+        SafeTeenApp.showNotification('Đã lưu số liệu nền; lượt truy cập mới sẽ tiếp tục được cộng.');
       }
     });
 
@@ -493,10 +566,11 @@ const SafeTeenAnalytics = (() => {
         `Thời gian trích xuất: ${timeStr}\n` +
         `----------------------------------------\n` +
         `1. Lượt truy cập website (bấm vào link): ${stats.visitors.toLocaleString('vi-VN')} lượt\n` +
-        `2. Số lượt hoàn thành khảo sát đầu vào (Pre-test): ${stats.pretestDone.toLocaleString('vi-VN')} lượt\n` +
-        `3. Số lượt thực hành giải quyết tình huống: ${stats.scenariosDone.toLocaleString('vi-VN')} lượt\n` +
-        `4. Số lượt tham gia bài Quiz đánh giá năng lực: ${stats.quizDone.toLocaleString('vi-VN')} lượt\n` +
-        `5. Số lượt kết nối tâm sự & tư vấn với Boxchat AI: ${stats.chatCount.toLocaleString('vi-VN')} lượt\n` +
+        `2. Học sinh tiếp cận: ${stats.studentsReached.toLocaleString('vi-VN')} người\n` +
+        `3. Số lượt hoàn thành khảo sát đầu vào (Pre-test): ${stats.pretestDone.toLocaleString('vi-VN')} lượt\n` +
+        `4. Số lượt thực hành giải quyết tình huống: ${stats.scenariosDone.toLocaleString('vi-VN')} lượt\n` +
+        `5. Số lượt tham gia bài Quiz đánh giá năng lực: ${stats.quizDone.toLocaleString('vi-VN')} lượt\n` +
+        `6. Số lượt kết nối tâm sự & tư vấn với Boxchat AI: ${stats.chatCount.toLocaleString('vi-VN')} lượt\n` +
         `----------------------------------------\n` +
         `Đơn vị thực hiện: Đề tài SafeTeen - Giáo dục an toàn & ranh giới cá nhân cho học sinh THPT.`;
 
@@ -519,7 +593,7 @@ const SafeTeenAnalytics = (() => {
     const csvRows = [
       ['\uFEFFCHI SO', 'GIA TRI', 'DON VI', 'GHI CHU'],
       ['Luot truy cap website (vao link)', stats.visitors, 'Luot', 'Nguoi mo link website'],
-      ['Uoc tinh hoc sinh tiep can', Math.round(stats.visitors * 0.85), 'Nguoi', 'Hoc sinh & giao vien'],
+      ['Hoc sinh tiep can', stats.studentsReached, 'Nguoi', 'So lieu cai dat trong bao cao'],
       ['Khao sat dau vao (Pre-test 20 cau)', stats.pretestDone, 'Hoc sinh', 'Da hoan thanh danh gia'],
       ['Thuc hanh xu ly tinh huong', stats.scenariosDone, 'Luot', 'Trai nghiem phan nhanh'],
       ['Kiem tra danh gia (Quiz)', stats.quizDone, 'Luot', 'Danh gia sau hoc tap'],

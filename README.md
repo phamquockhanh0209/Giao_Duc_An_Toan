@@ -73,6 +73,8 @@ Giao diện dùng HTML5, CSS3 và Vanilla JavaScript. Các tính năng học t�
 
 Dữ liệu tiến độ học tập được lưu trữ riêng tư trên trình duyệt (`localStorage`) của người học. Người dùng có thể nhấn vào nút **"Kết quả của tôi"** ở góc trên cùng bên phải để xem bảng tổng hợp hoặc chọn **"Làm lại từ đầu (Xóa dữ liệu)"** bất cứ khi nào muốn kiểm tra lại.
 
+Bộ đếm báo cáo ghi nhận mỗi hồ sơ trình duyệt một lần trên website đã triển khai API; mở các trang khác hoặc tải lại không cộng thêm. Quản trị viên có thể nhập số nền riêng cho lượt truy cập và học sinh tiếp cận trong phần chỉnh số liệu của báo cáo; mỗi hồ sơ trình duyệt mới sẽ cộng thêm 1 vào cả hai. Số nền tùy chỉnh được lưu trong trình duyệt đang chỉnh sửa; nếu dùng số mô phỏng, cần ghi rõ khi trình bày báo cáo.
+
 ---
 
 ## 5. Cấu hình SafeTeen AI (Google Gemini)
