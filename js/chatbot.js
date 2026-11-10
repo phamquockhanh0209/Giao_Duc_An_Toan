@@ -95,6 +95,10 @@
       const pendingMessage = appendMessage('Mình đang đọc câu hỏi của bạn…', 'assistant', true);
 
       try {
+        if (window.location.protocol === 'file:') {
+          throw new Error('Chatbot AI chưa chạy khi mở file trực tiếp. Hãy mở website đã triển khai trên Vercel hoặc chạy bằng lệnh vercel dev.');
+        }
+
         const response = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -129,12 +133,9 @@
       } catch (error) {
         pendingMessage.remove();
         history.pop();
-        status.textContent = error.message || 'Đã xảy ra lỗi. Vui lòng thử lại sau.';
-        appendMessage(
-          'Mình chưa thể trả lời lúc này. Nếu bạn đang cần giúp đỡ ngay, hãy nói với người lớn bạn tin tưởng hoặc gọi Tổng đài Bảo vệ Trẻ em 111.',
-          'assistant',
-          false
-        );
+        const errorMessage = error.message || 'Đã xảy ra lỗi. Vui lòng thử lại sau.';
+        status.textContent = errorMessage;
+        appendMessage(errorMessage, 'assistant', false);
       } finally {
         input.disabled = false;
         sendButton.disabled = false;
