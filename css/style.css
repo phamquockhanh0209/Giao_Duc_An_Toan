@@ -3870,15 +3870,6 @@ img, svg {
   cursor: pointer;
 }
 
-.ai-chat-disclaimer {
-  padding: 0.6rem 0.8rem;
-  border-bottom: 1px solid var(--ai-chat-pink-border);
-  background: #fff0f3;
-  color: #704b55;
-  font-size: 0.72rem;
-  line-height: 1.45;
-}
-
 .ai-chat-messages {
   display: flex;
   flex: 1;

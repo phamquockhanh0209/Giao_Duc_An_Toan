@@ -23,9 +23,6 @@
           </div>
           <button class="ai-chat-close" type="button" aria-label="Đóng cửa sổ chat">&times;</button>
         </header>
-        <div class="ai-chat-disclaimer">
-          Tin nhắn được gửi tới Google Gemini để tạo câu trả lời, không phải kênh tư vấn bí mật. Đừng gửi tên, địa chỉ hay thông tin nhận dạng. AI không thay thế người lớn đáng tin cậy hoặc chuyên gia.
-        </div>
         <div class="ai-chat-messages" role="log" aria-live="polite" aria-relevant="additions text">
           <div class="ai-chat-message ai-chat-message--assistant">
             Chào bạn, mình có thể cùng bạn tìm hiểu về ranh giới cá nhân, sự đồng thuận và cách tìm hỗ trợ an toàn. Bạn muốn hỏi điều gì?

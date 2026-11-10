@@ -1,4 +1,4 @@
-const MODEL = 'gemini-2.5-flash';
+const MODEL = 'gemini-3.6-flash';
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_LENGTH = 1500;
 const SYSTEM_INSTRUCTION = `Bạn là SafeTeen AI, trợ lý giáo dục bằng tiếng Việt cho học sinh THPT về ranh giới cá nhân, quyền riêng tư, sự đồng thuận và cách tìm trợ giúp an toàn.
@@ -51,17 +51,34 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
         contents,
-        generationConfig: { maxOutputTokens: 600, temperature: 0.5 },
+        generationConfig: { maxOutputTokens: 600 },
       }),
     });
 
-    const data = await response.json();
+    const data = await response.json().catch(() => ({}));
     if (!response.ok) {
-      console.error(`Gemini API returned status ${response.status}.`);
+      const apiError = data.error || {};
+      console.error('Gemini API request failed:', {
+        httpStatus: response.status,
+        status: apiError.status,
+        message: apiError.message,
+      });
+
+      let errorMessage = 'Dịch vụ AI chưa thể trả lời lúc này.';
+      if (response.status === 400) {
+        errorMessage = 'Gemini từ chối yêu cầu. Hãy kiểm tra API đang dùng model gemini-3.6-flash và triển khai bản cập nhật mới nhất.';
+      } else if (response.status === 401 || response.status === 403) {
+        errorMessage = 'Gemini không chấp nhận API key. Hãy kiểm tra GEMINI_API_KEY trong Vercel và quyền sử dụng Gemini API.';
+      } else if (response.status === 404) {
+        errorMessage = 'Không tìm thấy model Gemini. Hãy triển khai lại phiên bản mới nhất của project.';
+      } else if (response.status === 429) {
+        errorMessage = 'Gemini API đã hết hạn mức hoặc đang có nhiều yêu cầu. Hãy kiểm tra hạn mức trong Google AI Studio rồi thử lại sau.';
+      } else if (response.status >= 500) {
+        errorMessage = 'Google Gemini đang gặp sự cố. Hãy thử lại sau ít phút.';
+      }
+
       return res.status(response.status === 429 ? 429 : 502).json({
-        error: response.status === 429
-          ? 'AI đang có nhiều yêu cầu. Bạn vui lòng thử lại sau ít phút.'
-          : 'Dịch vụ AI chưa thể trả lời lúc này.',
+        error: errorMessage,
       });
     }
     return res.status(200).json(data);
