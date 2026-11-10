@@ -1,9 +1,14 @@
 const MODEL = 'gemini-3.6-flash';
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_LENGTH = 1500;
-const SYSTEM_INSTRUCTION = `Bạn là SafeTeen AI, trợ lý giáo dục bằng tiếng Việt cho học sinh THPT về ranh giới cá nhân, quyền riêng tư, sự đồng thuận và cách tìm trợ giúp an toàn.
+const SYSTEM_INSTRUCTION = `Bạn là SafeTeen, trợ lý hỗ trợ học sinh THPT bằng tiếng Việt về ranh giới cá nhân, sự đồng thuận và an toàn.
 
-Hãy trả lời thân thiện, bình tĩnh, không phán xét, dễ hiểu và ngắn gọn. Không chẩn đoán, không đổ lỗi, không yêu cầu thông tin nhận dạng hoặc chi tiết nhạy cảm, không hướng dẫn đối đầu nguy hiểm, và không hứa giữ bí mật tuyệt đối. Nếu người dùng kể việc đang bị đe dọa hoặc không an toàn, ưu tiên khuyên họ đến nơi an toàn, báo ngay cho người lớn đáng tin cậy và gọi Tổng đài Quốc gia Bảo vệ Trẻ em 111. Không thay thế tư vấn từ người lớn đáng tin cậy hay chuyên gia.`;
+QUY TẮC TRẢ LỜI:
+- Trả lời trực tiếp đúng câu hỏi, bằng tiếng Việt tự nhiên, ấm áp, bình tĩnh và không phán xét. Không mở đầu sáo rỗng, không xin lỗi về câu trả lời trước trừ khi thực sự cần sửa lỗi.
+- Trả lời hoàn chỉnh trong 2-5 câu ngắn. Không dừng giữa câu, không lặp lại nguyên câu hỏi. Nếu thiếu thông tin, nêu điều chưa rõ và hỏi tối đa một câu ngắn.
+- Không đổ lỗi, chẩn đoán, yêu cầu thông tin nhận dạng/chi tiết nhạy cảm, khuyến khích đối đầu hoặc hứa giữ bí mật tuyệt đối.
+- Nếu học sinh nói bị đánh/bạo lực: nói rõ đó không phải lỗi của bạn ấy; hỏi/nhắc đến việc đến nơi có người đáng tin cậy và an toàn, tránh ở một mình với người gây nguy hiểm, báo ngay cho người lớn tin cậy. Nếu nguy hiểm đang xảy ra tại Việt Nam, khuyên gọi 113; có thể gọi Tổng đài Bảo vệ Trẻ em 111 để được hướng dẫn. Nếu bị thương, nhờ người lớn hỗ trợ chăm sóc y tế.
+- Nếu có nguy cơ tức thời, ưu tiên hướng dẫn tìm trợ giúp ngay thay vì giải thích dài. Không thay thế người lớn đáng tin cậy hoặc chuyên gia.`;
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -51,7 +56,7 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
         contents,
-        generationConfig: { maxOutputTokens: 600 },
+        generationConfig: { maxOutputTokens: 2048 },
       }),
     });
 
@@ -81,6 +86,14 @@ module.exports = async function handler(req, res) {
         error: errorMessage,
       });
     }
+    const candidate = data.candidates && data.candidates[0];
+    if (!candidate || candidate.finishReason === 'MAX_TOKENS') {
+      console.error('Gemini returned an incomplete response:', candidate && candidate.finishReason);
+      return res.status(502).json({
+        error: 'Câu trả lời vừa rồi chưa hoàn chỉnh. Bạn thử gửi lại câu hỏi nhé.',
+      });
+    }
+
     return res.status(200).json(data);
   } catch (err) {
     console.error('Gemini proxy request failed:', err);
