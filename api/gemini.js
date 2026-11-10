@@ -1,4 +1,5 @@
 const MODEL = 'gemini-3.6-flash';
+const FALLBACK_MODEL = 'gemini-3.5-flash-lite';
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_LENGTH = 1500;
 const SYSTEM_INSTRUCTION = `Bạn là SafeTeen, trợ lý hỗ trợ học sinh THPT bằng tiếng Việt về ranh giới cá nhân, sự đồng thuận và an toàn.
@@ -45,25 +46,37 @@ module.exports = async function handler(req, res) {
   const timeout = setTimeout(() => controller.abort(), 30000);
 
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
-    const response = await fetch(url, {
-      method: 'POST',
-      signal: controller.signal,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': apiKey,
-      },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
-        contents,
-        generationConfig: { maxOutputTokens: 2048 },
-      }),
+    const requestBody = JSON.stringify({
+      systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
+      contents,
+      generationConfig: { maxOutputTokens: 2048 },
     });
+    let response;
+    let data;
+    let activeModel = MODEL;
 
-    const data = await response.json().catch(() => ({}));
+    for (const model of [MODEL, FALLBACK_MODEL]) {
+      activeModel = model;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+      response = await fetch(url, {
+        method: 'POST',
+        signal: controller.signal,
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': apiKey,
+        },
+        body: requestBody,
+      });
+      data = await response.json().catch(() => ({}));
+
+      if (response.ok || response.status !== 503 || model === FALLBACK_MODEL) break;
+      console.warn(`Gemini model ${MODEL} is unavailable; trying fallback ${FALLBACK_MODEL}.`);
+    }
+
     if (!response.ok) {
       const apiError = data.error || {};
       console.error('Gemini API request failed:', {
+        model: activeModel,
         httpStatus: response.status,
         status: apiError.status,
         message: apiError.message,
@@ -78,6 +91,8 @@ module.exports = async function handler(req, res) {
         errorMessage = 'Không tìm thấy model Gemini. Hãy triển khai lại phiên bản mới nhất của project.';
       } else if (response.status === 429) {
         errorMessage = 'Gemini API đã hết hạn mức hoặc đang có nhiều yêu cầu. Hãy kiểm tra hạn mức trong Google AI Studio rồi thử lại sau.';
+      } else if (response.status === 503) {
+        errorMessage = 'Các model Gemini đang quá tải. Bạn thử lại sau ít phút nhé.';
       } else if (response.status >= 500) {
         errorMessage = 'Google Gemini đang gặp sự cố. Hãy thử lại sau ít phút.';
       }
@@ -94,6 +109,9 @@ module.exports = async function handler(req, res) {
       });
     }
 
+    if (activeModel !== MODEL) {
+      console.info(`Gemini response served by fallback model ${activeModel}.`);
+    }
     return res.status(200).json(data);
   } catch (err) {
     console.error('Gemini proxy request failed:', err);
